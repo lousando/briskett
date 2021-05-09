@@ -1,6 +1,6 @@
 # Brisket
 
-Yet another Tezos wallet
+A delicious Tezos interface for the Trezor hardware wallet
 
 ## Build Setup
 
