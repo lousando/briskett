@@ -1,36 +1,38 @@
 <template>
-  <main>
-    <section>
-      <Nuxt />
-    </section>
-    <footer>Version: {{ version }}</footer>
-  </main>
+	<main>
+		<section>
+			<Nuxt />
+		</section>
+		<footer class="is-size-7">Version: {{ version }}</footer>
+	</main>
 </template>
 
 <script>
-import Vue from 'vue'
-import { version } from '../package.json'
+import Vue from "vue";
+import { version } from "../package.json";
 
 export default Vue.extend({
-  data() {
-    return {
-      version,
-    }
-  },
-})
+	data() {
+		return {
+			version,
+		};
+	},
+});
 </script>
 
-<style>
+<style lang="postcss">
+@import "bulma/css/bulma.min.css";
+
 main {
-  display: grid;
-  grid-template-rows: auto 1fr;
+	display: grid;
+	grid-template-rows: auto 1fr;
 }
 
 section {
-  text-align: center;
+	text-align: center;
 }
 
 footer {
-  text-align: right;
+	text-align: right;
 }
 </style>

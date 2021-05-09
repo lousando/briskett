@@ -1,23 +1,53 @@
 <template>
-  <div>
-    <h1 class="title">Brisket (beta)</h1>
-    <h3 v-if="connectedAddress">
-      Connected Address: {{this.connectedAddress}}
-    </h3>
-    <h3 v-if="connectedAddress">
-      Balance: {{this.connectedAddressBalance}}ꜩ
-    </h3>
-    <button v-if="connectedAddress" @click="sendTezos" disabled>
-      Send
-    </button>
-    <button v-if="connectedAddress" @click="receiveTezos" disabled>
-      Receive
-    </button>
+	<div>
+		<h1 class="is-size-1">Brisket (beta)</h1>
 
-    <button v-if="!connectedAddress" @click="getAddress" :disabled="isLoadingWallet">
-      Connect Trezor
-    </button>
-  </div>
+		<h4 v-if="connectedAddress" class="is-size-4">
+			Connected Address: {{ this.connectedAddress }}
+		</h4>
+		<h4 v-if="connectedAddress" class="is-size-4">
+			Balance: {{ this.connectedAddressBalance }}ꜩ
+		</h4>
+		<div class="is-flex is-justify-content-space-around">
+			<button
+				v-if="connectedAddress"
+				class="button"
+				disabled
+				@click="sendTezos"
+			>
+				Send
+			</button>
+			<button
+				v-if="connectedAddress"
+				class="button"
+				disabled
+				@click="delegateTezos"
+			>
+				Delegate
+			</button>
+			<button
+				v-if="connectedAddress"
+				class="button"
+				disabled
+				@click="receiveTezos"
+			>
+				Receive
+			</button>
+		</div>
+
+		<button
+			v-if="!connectedAddress"
+			:class="{
+				button: true,
+				'is-large': true,
+				'is-loading': isLoadingWallet,
+			}"
+			:disabled="isLoadingWallet"
+			@click="getAddress"
+		>
+			Connect Trezor
+		</button>
+	</div>
 </template>
 
 <script lang="js">
@@ -70,6 +100,9 @@ export default Vue.extend({
       });
     },
     async sendTezos () {
+      // todo: implement
+    },
+    async delegateTezos () {
       // todo: implement
     },
     async receiveTezos () {
