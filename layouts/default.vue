@@ -1,7 +1,7 @@
 <template>
 	<main>
 		<header>
-			<h1 class="is-size-1">Brisket <sub>[beta]</sub></h1>
+			<h1 class="is-size-1">Briskett <sub>[beta]</sub></h1>
 
 			<h4 v-if="this.$store.state.connectedAddress" class="is-size-4">
 				Connected Address: {{ this.$store.state.connectedAddress }}

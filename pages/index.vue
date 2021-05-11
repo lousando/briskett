@@ -1,16 +1,22 @@
 <template>
-	<button
-		v-if="!this.$store.connectedAddress"
-		:class="{
-			button: true,
-			'is-large': true,
-			'is-loading': isLoadingWallet,
-		}"
-		:disabled="isLoadingWallet"
-		@click="getAddress"
-	>
-		Connect Trezor
-	</button>
+	<div>
+		<button
+			v-if="!this.$store.connectedAddress"
+			:class="{
+				button: true,
+				'is-large': true,
+				'is-loading': isLoadingWallet,
+			}"
+			:disabled="isLoadingWallet"
+			@click="getAddress"
+		>
+			Connect Trezor*
+		</button>
+		<p>
+			*Might need to disable ad blocker in order for Trezor Connect to work.<br />
+			Brave users, take down Brave Shields.
+		</p>
+	</div>
 </template>
 
 <script lang="ts">
@@ -62,4 +68,8 @@ export default Vue.extend({
 });
 </script>
 
-<style></style>
+<style scoped>
+p {
+	margin-top: 20px;
+}
+</style>

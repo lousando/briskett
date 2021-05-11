@@ -1,4 +1,4 @@
-# Brisket
+# Briskett
 
 A delicious Tezos interface for the Trezor hardware wallet
 

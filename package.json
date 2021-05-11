@@ -1,5 +1,5 @@
 {
-  "name": "brisket",
+  "name": "briskett",
   "description": "A delicious Tezos interface for the Trezor hardware wallet.",
   "version": "0.2.3",
   "private": true,
