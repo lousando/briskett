@@ -1,5 +1,38 @@
 <template>
 	<main>
+		<header>
+			<h1 class="is-size-1">Brisket <sub>[beta]</sub></h1>
+
+			<h4 v-if="this.$store.state.connectedAddress" class="is-size-4">
+				Connected Address: {{ this.$store.state.connectedAddress }}
+			</h4>
+			<h4 v-if="this.$store.state.connectedAddress" class="balance is-size-4">
+				Balance: {{ this.$store.state.connectedAddressBalance }}
+			</h4>
+			<h5>
+				Baker:
+				<a
+					rel="noopener"
+					target="_blank"
+					:href="`https://tzstats.com/${this.$store.state.connectedAddressBaker}`"
+					>{{ this.$store.state.connectedAddressBaker }}</a
+				>
+			</h5>
+
+			<div v-if="this.$store.state.connectedAddress" class="tabs is-boxed">
+				<ul>
+					<li class="is-active">
+						<NuxtLink to="/send">Send</NuxtLink>
+					</li>
+					<li>
+						<!--						<NuxtLink to="/delegate">Delegate</NuxtLink>-->
+					</li>
+					<li>
+						<!--						<NuxtLink to="/receive">Receive</NuxtLink>-->
+					</li>
+				</ul>
+			</div>
+		</header>
 		<section>
 			<Nuxt />
 		</section>
@@ -17,6 +50,16 @@ export default Vue.extend({
 			version,
 		};
 	},
+	mounted() {
+		// start from index each time
+		this.$nuxt.$router.push("/");
+
+		setInterval(() => {
+			if (this.$store.state.connectedAddress) {
+				this.$store.dispatch("loadConnectedAccountData");
+			}
+		}, 1000 * 30 /* check once every 30 seconds */);
+	},
 });
 </script>
 
@@ -25,14 +68,19 @@ export default Vue.extend({
 
 main {
 	display: grid;
-	grid-template-rows: auto 1fr;
+	grid-template-rows: 1fr auto 1fr;
 }
 
+header,
 section {
 	text-align: center;
 }
 
 footer {
 	text-align: right;
+}
+
+.balance::after {
+	content: "ꜩ";
 }
 </style>
