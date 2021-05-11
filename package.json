@@ -1,5 +1,6 @@
 {
   "name": "brisket",
+  "description": "A delicious Tezos interface for the Trezor hardware wallet.",
   "version": "0.2.0",
   "private": true,
   "license": "GPL-3.0",
