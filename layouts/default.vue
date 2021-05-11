@@ -9,7 +9,7 @@
 			<h4 v-if="this.$store.state.connectedAddress" class="balance is-size-4">
 				Balance: {{ this.$store.state.connectedAddressBalance }}
 			</h4>
-			<h5>
+			<h5 v-if="this.$store.state.connectedAddressBaker">
 				Baker:
 				<a
 					rel="noopener"
