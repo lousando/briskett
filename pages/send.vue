@@ -121,7 +121,7 @@ export default Vue.extend({
 
 			// todo: check if address is valid
 
-			let estimate = {};
+			let estimate = null;
 
 			try {
 				estimate = await tezos.estimate.transfer({
@@ -137,6 +137,13 @@ export default Vue.extend({
 					this.error = error.message;
 				}
 
+				this.isSending = false;
+				return;
+			}
+
+			if (estimate === null) {
+				this.error =
+					"Failed to get transaction estimates. Please try again later.";
 				this.isSending = false;
 				return;
 			}
