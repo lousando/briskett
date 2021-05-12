@@ -156,7 +156,7 @@ export default Vue.extend({
 			const operation: TezosOperation = {};
 
 			// reveal address in this operation if need be
-			if (!this.$store.state.connectedAccountIsActivated) {
+			if (!this.$store.state.connectedAccountIsRevealed) {
 				operation.reveal = {
 					source: this.$store.state.connectedAddress,
 					public_key: publicKeyResult.payload.publicKey,

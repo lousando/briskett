@@ -3,7 +3,7 @@ interface AppState {
 	connectedAddress: string;
 	connectedAddressBalance: number;
 	connectedAddressBaker: string;
-	connectedAccountIsActivated: boolean;
+	connectedAccountIsRevealed: boolean;
 }
 
 export const state = (): AppState => ({
@@ -11,7 +11,7 @@ export const state = (): AppState => ({
 	connectedAddress: "",
 	connectedAddressBalance: 0.0,
 	connectedAddressBaker: "",
-	connectedAccountIsActivated: false,
+	connectedAccountIsRevealed: false,
 });
 
 export const getters = {};
@@ -26,8 +26,8 @@ export const mutations = {
 	setConnectedAddressBaker(state: AppState, payload: string) {
 		state.connectedAddressBaker = payload;
 	},
-	setConnectedAccountIsActivated(state: AppState, payload: boolean) {
-		state.connectedAccountIsActivated = payload;
+	setConnectedAccountIsRevealed(state: AppState, payload: boolean) {
+		state.connectedAccountIsRevealed = payload;
 	},
 };
 
@@ -41,17 +41,14 @@ export const actions = {
 				(payload: {
 					total_balance: string;
 					delegate: string;
-					is_activated: boolean;
+					is_revealed: boolean;
 				}) => {
 					context.commit(
 						"setConnectedAddressBalance",
 						payload?.total_balance || 0
 					);
 					context.commit("setConnectedAddressBaker", payload.delegate);
-					context.commit(
-						"setConnectedAccountIsActivated",
-						payload.is_activated
-					);
+					context.commit("setConnectedAccountIsRevealed", payload.is_revealed);
 				}
 			);
 	},
