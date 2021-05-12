@@ -3,6 +3,7 @@ interface AppState {
 	connectedAddress: string;
 	connectedAddressBalance: number;
 	connectedAddressBaker: string;
+	connectedAccountIsActivated: boolean;
 }
 
 export const state = (): AppState => ({
@@ -10,6 +11,7 @@ export const state = (): AppState => ({
 	connectedAddress: "",
 	connectedAddressBalance: 0.0,
 	connectedAddressBaker: "",
+	connectedAccountIsActivated: false,
 });
 
 export const getters = {};
@@ -24,6 +26,9 @@ export const mutations = {
 	setConnectedAddressBaker(state: AppState, payload: string) {
 		state.connectedAddressBaker = payload;
 	},
+	setConnectedAccountIsActivated(state: AppState, payload: boolean) {
+		state.connectedAccountIsActivated = payload;
+	},
 };
 
 export const actions = {
@@ -32,9 +37,22 @@ export const actions = {
 			`https://api.tzstats.com/explorer/account/${context.state.connectedAddress}`
 		)
 			.then((r) => r.json())
-			.then((payload: { total_balance: string; delegate: string }) => {
-				context.commit("setConnectedAddressBalance", payload?.total_balance || 0);
-				context.commit("setConnectedAddressBaker", payload.delegate);
-			});
+			.then(
+				(payload: {
+					total_balance: string;
+					delegate: string;
+					is_activated: boolean;
+				}) => {
+					context.commit(
+						"setConnectedAddressBalance",
+						payload?.total_balance || 0
+					);
+					context.commit("setConnectedAddressBaker", payload.delegate);
+					context.commit(
+						"setConnectedAccountIsActivated",
+						payload.is_activated
+					);
+				}
+			);
 	},
 };
