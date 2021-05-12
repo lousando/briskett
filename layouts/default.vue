@@ -19,9 +19,9 @@
 				>
 			</h5>
 
-			<div v-if="this.$store.state.connectedAddress" class="tabs is-boxed">
+			<div v-if="this.$store.state.connectedAddress" class="tabs">
 				<ul>
-					<li class="is-active">
+					<li>
 						<NuxtLink to="/send">Send</NuxtLink>
 					</li>
 					<li>
@@ -76,11 +76,24 @@ section {
 	text-align: center;
 }
 
+a.nuxt-link-active {
+	border-bottom: 3px solid gray;
+}
+
 footer {
 	text-align: right;
 }
 
 .balance::after {
 	content: "ꜩ";
+}
+
+form {
+	text-align: left;
+	margin: 30px;
+}
+
+.control {
+	width: 100%;
 }
 </style>

@@ -219,12 +219,4 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-form {
-	text-align: left;
-	margin: 30px;
-}
-
-.control {
-	width: 100%;
-}
 </style>
