@@ -141,6 +141,11 @@ export default Vue.extend({
 
 				if (error.message?.includes("balance_too_low")) {
 					this.error = "Amount is greater than balance.";
+				} else if (
+					error.message?.includes("empty_implicit_delegated_contract")
+				) {
+					this.error =
+						"Cannot drain wallet; it must contain a minimum balance of 0.275ꜩ";
 				} else {
 					this.error = error.message;
 				}
