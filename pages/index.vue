@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<h4 class="is-size-4">The delicious Tezos wallet.</h4>
 		<button
 			v-if="!this.$store.connectedAddress"
 			:class="{

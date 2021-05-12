@@ -1,15 +1,15 @@
 <template>
 	<main>
 		<header>
-			<h1 class="is-size-1">Briskett <sub>[beta]</sub></h1>
+			<h1 class="is-size-1">Briskett 🥩<sub>[beta]</sub></h1>
 
-			<h4 v-if="this.$store.state.connectedAddress" class="is-size-4">
-				Connected Address: {{ this.$store.state.connectedAddress }}
-			</h4>
-			<h4 v-if="this.$store.state.connectedAddress" class="balance is-size-4">
+			<h3 v-if="this.$store.state.connectedAddress" class="balance is-size-3">
 				Balance: {{ this.$store.state.connectedAddressBalance }}
+			</h3>
+			<h4 v-if="this.$store.state.connectedAddress" class="is-size-4">
+				Address: {{ this.$store.state.connectedAddress }}
 			</h4>
-			<h5 v-if="this.$store.state.connectedAddressBaker">
+			<h4 v-if="this.$store.state.connectedAddressBaker" class="is-size-4">
 				Baker:
 				<a
 					rel="noopener"
@@ -17,7 +17,7 @@
 					:href="`https://tzstats.com/${this.$store.state.connectedAddressBaker}`"
 					>{{ this.$store.state.connectedAddressBaker }}</a
 				>
-			</h5>
+			</h4>
 
 			<div v-if="this.$store.state.connectedAddress" class="tabs">
 				<ul>
