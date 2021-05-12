@@ -33,7 +33,7 @@ export const actions = {
 		)
 			.then((r) => r.json())
 			.then((payload: { total_balance: string; delegate: string }) => {
-				context.commit("setConnectedAddressBalance", payload.total_balance);
+				context.commit("setConnectedAddressBalance", payload?.total_balance || 0);
 				context.commit("setConnectedAddressBaker", payload.delegate);
 			});
 	},
