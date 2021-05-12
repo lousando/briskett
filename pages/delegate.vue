@@ -1,5 +1,8 @@
 <template>
 	<div>
+		<div v-if="isSending" class="notification has-text-centered">
+			{{ statusText }}
+		</div>
 		<form
 			v-if="this.$store.state.connectedAddress"
 			@submit.prevent="delegateTezos"
@@ -68,13 +71,14 @@ import Vue from "vue";
 import { RpcClient } from "@taquito/rpc";
 import TrezorConnect, { TezosDelegationOperation } from "trezor-connect";
 import { TezosToolkit } from "@taquito/taquito";
-import { ReadOnlySigner } from "~/assets/js/util";
 import { TezosOperation } from "trezor-connect/lib/typescript/networks/tezos";
+import { ReadOnlySigner } from "~/assets/js/util";
 
 export default Vue.extend({
 	name: "Delegate",
 	data() {
 		return {
+			statusText: "",
 			isSending: false,
 			bakerAddress: "",
 			error: "",
@@ -90,12 +94,16 @@ export default Vue.extend({
 				process.env.NUXT_ENV_TAQUITO_RPC_URL || ""
 			);
 
+			this.statusText = "Retrieving head block...";
+
 			const blockHead = await tezosRpc.getBlockHeader();
 			const headBlockHash: string = blockHead.hash;
 
 			const tezos = new TezosToolkit(
 				process.env.NUXT_ENV_TAQUITO_RPC_URL || ""
 			);
+
+			this.statusText = "Prompting for public key...";
 
 			const publicKeyResult = await TrezorConnect.tezosGetPublicKey({
 				path: this.$store.state.connectedAccountPath,
@@ -118,6 +126,8 @@ export default Vue.extend({
 			let estimate = null;
 
 			try {
+				this.statusText = "Estimating delegation cost...";
+
 				estimate = await tezos.estimate.setDelegate({
 					source: this.$store.state.connectedAddress,
 					delegate: this.bakerAddress,
@@ -139,6 +149,8 @@ export default Vue.extend({
 			let counter: number = 0;
 
 			try {
+				this.statusText = "Fetching new counter...";
+
 				const contract = await tezosRpc.getContract(
 					this.$store.state.connectedAddress
 				);
@@ -147,9 +159,8 @@ export default Vue.extend({
 			} catch (error) {
 				console.error(error);
 				this.isSending = false;
-				alert(
-					"ERROR: Failed to get new counter for delegation. Please try again later."
-				);
+				this.error =
+					"ERROR: Failed to get new counter for delegation. Please try again later.";
 				return;
 			}
 
@@ -180,6 +191,8 @@ export default Vue.extend({
 
 			operation.delegation = delegationOptions;
 
+			this.statusText = "Prompting to sign operation...";
+
 			const result = await TrezorConnect.tezosSignTransaction({
 				path: this.$store.state.connectedAccountPath,
 				branch: headBlockHash,
@@ -194,6 +207,8 @@ export default Vue.extend({
 			}
 
 			try {
+				this.statusText = "Attempting to injection operation to the network...";
+
 				// inject transaction to the blockchain
 				const delegationOperationId: string = await tezosRpc.injectOperation(
 					result.payload.sig_op_contents
