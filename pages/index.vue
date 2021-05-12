@@ -28,7 +28,7 @@ if (process.client) {
 	TrezorConnect.init({
 		connectSrc:
 			process.env.NODE_ENV === "development" ? "https://localhost:8088/" : "",
-		lazyLoad: false, // inject TrezorConnect iframe asap
+		lazyLoad: true, // inject once first TrezorConnect method is called
 		manifest: {
 			email: process.env.NUXT_ENV_TREZOR_MANIFEST_EMAIL || "",
 			appUrl: process.env.NUXT_ENV_TREZOR_MANIFEST_APP_URL || "",
