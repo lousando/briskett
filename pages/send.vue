@@ -1,5 +1,8 @@
 <template>
 	<div>
+		<div v-if="isSending" class="notification has-text-centered">
+			{{ statusText }}
+		</div>
 		<form v-if="this.$store.state.connectedAddress" @submit.prevent="sendTezos">
 			<div class="field is-horizontal">
 				<div class="field-label">
@@ -92,6 +95,7 @@ export default Vue.extend({
 	data() {
 		return {
 			XTZ_SCALAR,
+			statusText: "",
 			isSending: false,
 			destinationAddress: "",
 			amount: 0,
@@ -116,6 +120,8 @@ export default Vue.extend({
 				signer: new ReadOnlySigner(this.$store.state.connectedAddress, ""),
 			});
 
+			this.statusText = "Retrieving head block...";
+
 			const blockHead = await tezosRpc.getBlockHeader();
 			const headBlockHash: string = blockHead.hash;
 
@@ -124,6 +130,8 @@ export default Vue.extend({
 			let estimate = null;
 
 			try {
+				this.statusText = "Estimating transaction cost...";
+
 				estimate = await tezos.estimate.transfer({
 					to: this.destinationAddress,
 					amount: this.amount,
@@ -151,6 +159,8 @@ export default Vue.extend({
 			let counter: number = 0;
 
 			try {
+				this.statusText = "Fetching new counter...";
+
 				const contract = await tezosRpc.getContract(
 					this.$store.state.connectedAddress
 				);
@@ -175,6 +185,8 @@ export default Vue.extend({
 				storage_limit: estimate.storageLimit,
 			};
 
+			this.statusText = "Prompting to sign transaction...";
+
 			const result = await TrezorConnect.tezosSignTransaction({
 				path: this.$store.state.connectedAccountPath,
 				branch: headBlockHash,
@@ -190,6 +202,9 @@ export default Vue.extend({
 			}
 
 			try {
+				this.statusText =
+					"Attempting to injection transaction to the network...";
+
 				// inject transaction to the blockchain
 				const transactionId: string = await tezosRpc.injectOperation(
 					result.payload.sig_op_contents
@@ -218,5 +233,4 @@ export default Vue.extend({
 });
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
