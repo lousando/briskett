@@ -82,6 +82,7 @@ a.nuxt-link-active {
 
 footer {
 	text-align: right;
+	margin-right: 20px;
 }
 
 .balance::after {
