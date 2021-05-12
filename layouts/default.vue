@@ -25,7 +25,7 @@
 						<NuxtLink to="/send">Send</NuxtLink>
 					</li>
 					<li>
-						<!--						<NuxtLink to="/delegate">Delegate</NuxtLink>-->
+						<NuxtLink to="/delegate">Delegate</NuxtLink>
 					</li>
 					<li>
 						<!--						<NuxtLink to="/receive">Receive</NuxtLink>-->
