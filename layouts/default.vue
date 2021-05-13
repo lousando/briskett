@@ -64,6 +64,7 @@
 					Icons from Font Awesome
 				</a>
 			</div>
+			<div>Donations: tz1Sx6bVpeRCQGzmHMCH63AYJ8NcJGswi2sa</div>
 		</footer>
 	</main>
 </template>
