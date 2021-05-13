@@ -93,6 +93,7 @@ export default Vue.extend({
 :root {
 	--primary-color: salmon;
 	--secondary-color: pink;
+	--border-radius: 20px;
 }
 
 main {
@@ -114,8 +115,14 @@ section {
 section {
 	margin: 30px auto;
 	padding: 80px 50px;
-	border-radius: 20px;
+	border-radius: var(--border-radius);
 	box-shadow: 3px 3px 10px var(--primary-color);
+}
+
+.notification {
+	background-color: transparent;
+	border: 2px solid var(--primary-color);
+	border-radius: calc(var(--border-radius) / 2);
 }
 
 @keyframes drop-shadow {
@@ -133,8 +140,16 @@ section {
 }
 
 .button.is-primary:hover {
-  background-color: var(--primary-color);
-  animation: drop-shadow 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+	background-color: var(--primary-color);
+	animation: drop-shadow 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.button.is-primary:focus {
+	background-color: var(--primary-color);
+}
+
+.button.is-primary.is-loading {
+	background-color: var(--primary-color);
 }
 
 a.nuxt-link-active {
