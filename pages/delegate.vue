@@ -81,6 +81,7 @@ import { ReadOnlySigner } from "~/assets/js/util";
 
 export default Vue.extend({
 	name: "Delegate",
+	scrollToTop: false,
 	data() {
 		return {
 			statusText: "",

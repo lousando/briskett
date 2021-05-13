@@ -143,6 +143,7 @@ const XTZ_SCALAR: number = 1000000;
 
 export default Vue.extend({
 	name: "Send",
+	scrollToTop: false,
 	data() {
 		return {
 			XTZ_SCALAR,
