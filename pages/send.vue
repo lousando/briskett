@@ -86,6 +86,7 @@ import Vue from "vue";
 import TrezorConnect from "trezor-connect";
 import { RpcClient } from "@taquito/rpc";
 import { TezosToolkit } from "@taquito/taquito";
+import { TezosOperation } from "trezor-connect/lib/typescript/networks/tezos";
 import { ReadOnlySigner } from "~/assets/js/util";
 
 const XTZ_SCALAR: number = 1000000;
@@ -116,8 +117,29 @@ export default Vue.extend({
 				process.env.NUXT_ENV_TAQUITO_RPC_URL || ""
 			);
 
+			let publicKeyResult = null;
+
+			// reveal address in this operation if need be
+			if (!this.$store.state.connectedAccountIsRevealed) {
+				this.statusText = "Prompting for public key...";
+
+				publicKeyResult = await TrezorConnect.tezosGetPublicKey({
+					path: this.$store.state.connectedAccountPath,
+					showOnTrezor: false,
+				});
+
+				if (publicKeyResult.success === false) {
+					this.error = "Failed to get public key. Please try again.";
+					this.isSending = false;
+					return;
+				}
+			}
+
 			tezos.setProvider({
-				signer: new ReadOnlySigner(this.$store.state.connectedAddress, ""),
+				signer: new ReadOnlySigner(
+					this.$store.state.connectedAddress,
+					publicKeyResult === null ? "" : publicKeyResult.payload.publicKey
+				),
 			});
 
 			this.statusText = "Retrieving head block...";
@@ -179,12 +201,34 @@ export default Vue.extend({
 				return;
 			}
 
-			const transactionOptions = {
+			const operation: TezosOperation = {};
+
+			// reveal address in this operation if need be
+			if (!this.$store.state.connectedAccountIsRevealed) {
+				if (publicKeyResult === null) {
+					this.error =
+						"Need public key for reveal operation. Please try again.";
+					this.isSending = false;
+					return;
+				}
+
+				operation.reveal = {
+					source: this.$store.state.connectedAddress,
+					public_key: publicKeyResult.payload.publicKey,
+					counter,
+					fee: estimate.suggestedFeeMutez,
+					gas_limit: estimate.gasLimit,
+					storage_limit: estimate.storageLimit,
+				};
+
+				counter += 1; // increment counter for delegation operation
+			}
+
+			operation.transaction = {
 				source: this.$store.state.connectedAddress,
 				destination: this.destinationAddress,
 				amount: this.amount * XTZ_SCALAR,
 				counter,
-				// todo: add ability to customize these options
 				fee: estimate.suggestedFeeMutez,
 				gas_limit: estimate.gasLimit,
 				storage_limit: estimate.storageLimit,
@@ -195,9 +239,7 @@ export default Vue.extend({
 			const result = await TrezorConnect.tezosSignTransaction({
 				path: this.$store.state.connectedAccountPath,
 				branch: headBlockHash,
-				operation: {
-					transaction: transactionOptions,
-				},
+				operation,
 			});
 
 			if (result.success === false) {
