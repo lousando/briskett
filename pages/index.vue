@@ -5,6 +5,7 @@
 			v-if="!this.$store.connectedAddress"
 			:class="{
 				button: true,
+				'is-primary': true,
 				'is-large': true,
 				'is-loading': isLoadingWallet,
 			}"

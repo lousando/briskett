@@ -26,12 +26,13 @@
 			</div>
 			<div class="field is-horizontal">
 				<div class="field-label">
-					<label class="label">Amount</label>
+					<label class="label" for="amount">Amount</label>
 				</div>
 				<div class="field-body">
 					<div class="field has-addons">
 						<div class="control is-expanded">
 							<input
+								id="amount"
 								v-model.number="amount"
 								class="input"
 								type="number"
@@ -105,6 +106,8 @@
 							type="submit"
 							:class="{
 								button: true,
+								'is-primary': true,
+								'is-medium': true,
 								'is-loading': isSending,
 							}"
 							:disabled="isSending"

@@ -19,7 +19,7 @@
 				>
 			</h4>
 
-			<div v-if="this.$store.state.connectedAddress" class="tabs">
+			<div v-if="this.$store.state.connectedAddress" class="tabs is-centered">
 				<ul>
 					<li>
 						<NuxtLink to="/send">Send</NuxtLink>
@@ -90,6 +90,11 @@ export default Vue.extend({
 <style lang="postcss">
 @import "bulma/css/bulma.min.css";
 
+:root {
+	--primary-color: salmon;
+	--secondary-color: pink;
+}
+
 main {
 	display: grid;
 	grid-template-rows: 1fr auto 1fr;
@@ -98,10 +103,46 @@ main {
 header,
 section {
 	text-align: center;
+	max-width: 800px;
+	margin: 30px auto 0 auto;
+}
+
+.balance::after {
+	content: "ꜩ";
+}
+
+section {
+	margin: 30px auto;
+	padding: 80px 50px;
+	border-radius: 20px;
+	box-shadow: 3px 3px 10px var(--primary-color);
+}
+
+@keyframes drop-shadow {
+	0% {
+		box-shadow: 0 0 0 0 black;
+	}
+	100% {
+		box-shadow: 2px 2px 5px black;
+	}
+}
+
+.button.is-primary {
+	background-color: var(--primary-color);
+	color: white;
+}
+
+.button.is-primary:hover {
+  background-color: var(--primary-color);
+  animation: drop-shadow 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 a.nuxt-link-active {
-	border-bottom: 3px solid gray;
+	border-bottom: 3px solid var(--primary-color);
+}
+
+.tabs a:hover {
+	border-bottom: 3px solid var(--secondary-color);
 }
 
 footer {
@@ -109,12 +150,7 @@ footer {
 	margin-right: 20px;
 }
 
-.balance::after {
-	content: "ꜩ";
-}
-
-form {
-	text-align: left;
-	margin: 30px;
+footer svg:hover path {
+	fill: var(--primary-color);
 }
 </style>

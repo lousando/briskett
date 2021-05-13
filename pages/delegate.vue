@@ -47,6 +47,8 @@
 							type="submit"
 							:class="{
 								button: true,
+								'is-primary': true,
+								'is-medium': true,
 								'is-loading': isSending,
 							}"
 							:disabled="isSending"
