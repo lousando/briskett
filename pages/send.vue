@@ -9,15 +9,17 @@
 					<label class="label" for="destinationAddress">To</label>
 				</div>
 				<div class="field-body">
-					<div class="control">
-						<input
-							id="destinationAddress"
-							v-model.trim="destinationAddress"
-							class="input"
-							type="text"
-							placeholder="destination address"
-							required
-						/>
+					<div class="field">
+						<div class="control">
+							<input
+								id="destinationAddress"
+								v-model.trim="destinationAddress"
+								class="input"
+								type="text"
+								placeholder="destination address"
+								required
+							/>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -26,36 +28,46 @@
 					<label class="label">Amount</label>
 				</div>
 				<div class="field-body">
-					<div class="control">
-						<input
-							v-model.number="amount"
-							class="input"
-							type="number"
-							placeholder="XTZ"
-							:min="1 / XTZ_SCALAR"
-							:step="1 / XTZ_SCALAR"
-							required
-						/>
-					</div>
-					<div class="control">
-						<button type="button" class="button" @click="setQuickAmount(0.25)">
-							25%
-						</button>
-					</div>
-					<div class="control">
-						<button type="button" class="button" @click="setQuickAmount(0.5)">
-							50%
-						</button>
-					</div>
-					<div class="control">
-						<button type="button" class="button" @click="setQuickAmount(0.75)">
-							75%
-						</button>
-					</div>
-					<div class="control">
-						<button type="button" class="button" @click="setQuickAmount(1)">
-							100%
-						</button>
+					<div class="field has-addons">
+						<div class="control is-expanded">
+							<input
+								v-model.number="amount"
+								class="input"
+								type="number"
+								placeholder="XTZ"
+								:min="1 / XTZ_SCALAR"
+								:step="1 / XTZ_SCALAR"
+								required
+							/>
+						</div>
+						<div class="control">
+							<button
+								type="button"
+								class="button"
+								@click="setQuickAmount(0.25)"
+							>
+								25%
+							</button>
+						</div>
+						<div class="control">
+							<button type="button" class="button" @click="setQuickAmount(0.5)">
+								50%
+							</button>
+						</div>
+						<div class="control">
+							<button
+								type="button"
+								class="button"
+								@click="setQuickAmount(0.75)"
+							>
+								75%
+							</button>
+						</div>
+						<div class="control">
+							<button type="button" class="button" @click="setQuickAmount(1)">
+								100%
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
