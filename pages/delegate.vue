@@ -20,6 +20,7 @@
 								class="input"
 								type="text"
 								placeholder="baker address"
+								:disabled="isSending"
 								required
 							/>
 						</div>
