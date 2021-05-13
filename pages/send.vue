@@ -17,6 +17,7 @@
 								class="input"
 								type="text"
 								placeholder="destination address"
+								:disabled="isSending"
 								required
 							/>
 						</div>
@@ -37,6 +38,7 @@
 								placeholder="XTZ"
 								:min="1 / XTZ_SCALAR"
 								:step="1 / XTZ_SCALAR"
+								:disabled="isSending"
 								required
 							/>
 						</div>
@@ -44,13 +46,19 @@
 							<button
 								type="button"
 								class="button"
+								:disabled="isSending"
 								@click="setQuickAmount(0.25)"
 							>
 								25%
 							</button>
 						</div>
 						<div class="control">
-							<button type="button" class="button" @click="setQuickAmount(0.5)">
+							<button
+								type="button"
+								class="button"
+								:disabled="isSending"
+								@click="setQuickAmount(0.5)"
+							>
 								50%
 							</button>
 						</div>
@@ -58,13 +66,19 @@
 							<button
 								type="button"
 								class="button"
+								:disabled="isSending"
 								@click="setQuickAmount(0.75)"
 							>
 								75%
 							</button>
 						</div>
 						<div class="control">
-							<button type="button" class="button" @click="setQuickAmount(1)">
+							<button
+								type="button"
+								class="button"
+								:disabled="isSending"
+								@click="setQuickAmount(1)"
+							>
 								100%
 							</button>
 						</div>
