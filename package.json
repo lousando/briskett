@@ -1,6 +1,6 @@
 {
   "name": "briskett",
-  "description": "A delicious Tezos interface for the Trezor hardware wallet.",
+  "description": "A delicious Tezos wallet interface for Trezor.",
   "version": "0.4.4",
   "private": true,
   "license": "GPL-3.0",

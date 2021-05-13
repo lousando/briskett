@@ -14,7 +14,7 @@ export default {
 			{
 				hid: "description",
 				name: "description",
-				content: "A delicious Tezos interface for the Trezor hardware wallet.",
+				content: "A delicious Tezos wallet interface for Trezor.",
 			},
 			{
 				property: "og:image",
