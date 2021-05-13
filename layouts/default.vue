@@ -37,7 +37,11 @@
 			<Nuxt />
 		</section>
 		<footer class="is-size-7">
-			<a href="https://github.com/lousando/briskett" target="_blank">
+			<a
+				href="https://github.com/lousando/briskett"
+				rel="noopener"
+				target="_blank"
+			>
 				<svg
 					aria-hidden="true"
 					focusable="false"
@@ -56,7 +60,7 @@
 			</a>
 			<div>Version: {{ version }}</div>
 			<div>
-				<a href="https://fontawesome.com/" target="_blank">
+				<a href="https://fontawesome.com/" rel="noopener" target="_blank">
 					Icons from Font Awesome
 				</a>
 			</div>
