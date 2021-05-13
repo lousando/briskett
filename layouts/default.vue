@@ -91,8 +91,10 @@ export default Vue.extend({
 @import "bulma/css/bulma.min.css";
 
 :root {
-	--primary-color: salmon;
-	--secondary-color: pink;
+	--primary-color: #bf3d40;
+	--secondary-color: #ca7d7e;
+	--tertiary-color: #401415;
+	--link-color: #8c2d2e;
 	--border-radius: 20px;
 }
 
@@ -104,7 +106,7 @@ main {
 header,
 section {
 	text-align: center;
-	max-width: 800px;
+	width: min(800px, 80vw);
 	margin: 30px auto 0 auto;
 }
 
@@ -117,6 +119,10 @@ section {
 	padding: 80px 50px;
 	border-radius: var(--border-radius);
 	box-shadow: 3px 3px 10px var(--primary-color);
+}
+
+a {
+	color: var(--link-color);
 }
 
 .notification {
@@ -166,6 +172,6 @@ footer {
 }
 
 footer svg:hover path {
-	fill: var(--primary-color);
+	fill: var(--link-color);
 }
 </style>
