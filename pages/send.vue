@@ -37,6 +37,26 @@
 							required
 						/>
 					</div>
+					<div class="control">
+						<button type="button" class="button" @click="setQuickAmount(0.25)">
+							25%
+						</button>
+					</div>
+					<div class="control">
+						<button type="button" class="button" @click="setQuickAmount(0.5)">
+							50%
+						</button>
+					</div>
+					<div class="control">
+						<button type="button" class="button" @click="setQuickAmount(0.75)">
+							75%
+						</button>
+					</div>
+					<div class="control">
+						<button type="button" class="button" @click="setQuickAmount(1)">
+							100%
+						</button>
+					</div>
 				</div>
 			</div>
 			<div v-if="error" class="field is-horizontal">
@@ -89,6 +109,7 @@ import { TezosToolkit } from "@taquito/taquito";
 import { TezosOperation } from "trezor-connect/lib/typescript/networks/tezos";
 import { ReadOnlySigner } from "~/assets/js/util";
 
+const MINIMUM_BALANCE = 0.275;
 const XTZ_SCALAR: number = 1000000;
 
 export default Vue.extend({
@@ -275,6 +296,11 @@ export default Vue.extend({
 			} finally {
 				this.isSending = false;
 			}
+		},
+		setQuickAmount(percentage: number) {
+			this.amount =
+				(this.$store.state.connectedAddressBalance - MINIMUM_BALANCE) *
+				percentage;
 		},
 	},
 });
