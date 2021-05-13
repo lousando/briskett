@@ -129,7 +129,7 @@ a {
 	color: var(--link-color);
 }
 
-.notification {
+.notification:not(.is-success) {
 	background-color: transparent;
 	border: 2px solid var(--primary-color);
 	border-radius: calc(var(--border-radius) / 2);
