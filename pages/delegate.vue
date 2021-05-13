@@ -12,15 +12,17 @@
 					<label class="label" for="destinationAddress">To</label>
 				</div>
 				<div class="field-body">
-					<div class="control">
-						<input
-							id="destinationAddress"
-							v-model.trim="bakerAddress"
-							class="input"
-							type="text"
-							placeholder="baker address"
-							required
-						/>
+					<div class="field">
+						<div class="control">
+							<input
+								id="destinationAddress"
+								v-model.trim="bakerAddress"
+								class="input"
+								type="text"
+								placeholder="baker address"
+								required
+							/>
+						</div>
 					</div>
 				</div>
 			</div>
