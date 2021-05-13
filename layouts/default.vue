@@ -170,6 +170,10 @@ a.nuxt-link-active {
 	border-bottom: 3px solid var(--secondary-color);
 }
 
+form {
+	margin-bottom: 10px;
+}
+
 footer {
 	text-align: right;
 	margin-right: 20px;
