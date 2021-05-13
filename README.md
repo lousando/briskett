@@ -1,6 +1,6 @@
-# Briskett
+# Briskett 🥩
 
-A delicious Tezos interface for the Trezor hardware wallet
+A delicious Tezos wallet interface for Trezor.
 
 ## Build Setup
 
