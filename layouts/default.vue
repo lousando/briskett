@@ -121,7 +121,7 @@ section {
 
 section {
 	margin: 30px auto;
-	padding: 80px 50px;
+	padding: 40px 50px 80px 50px;
 	border-radius: var(--border-radius);
 	box-shadow: 3px 3px 10px var(--primary-color);
 }
@@ -130,7 +130,7 @@ a {
 	color: var(--link-color);
 }
 
-.notification:not(.is-success) {
+.notification:not(.is-success, .is-danger) {
 	background-color: transparent;
 	border: 2px solid var(--primary-color);
 	border-radius: calc(var(--border-radius) / 2);
