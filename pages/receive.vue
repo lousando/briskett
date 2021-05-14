@@ -20,6 +20,16 @@
 		<button class="button is-primary" @click="verifyAddress">
 			Verify Address
 		</button>
+		<details>
+			<summary>Why verify my address?</summary>
+			<p>
+				Although the chances are slim, in the event an attacker gains access to
+				this page (like via a malicious browser extension) they could swap out
+				your address for their own. This would lead to them getting the coins
+				that are about to be sent out and NOT YOU! Please practice good security
+				by verifying your address, especially when sending very large amounts.
+			</p>
+		</details>
 	</div>
 </template>
 

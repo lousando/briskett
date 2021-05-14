@@ -268,6 +268,27 @@ form {
 	margin-bottom: 10px;
 }
 
+@keyframes expand {
+	0% {
+		opacity: 0;
+		transform: translatey(-15px);
+	}
+	100% {
+		opacity: 1;
+		transform: translatey(0);
+	}
+}
+
+details[open] p {
+	animation: expand 200ms linear;
+}
+
+summary {
+	margin-top: 10px;
+	cursor: pointer;
+	user-select: none;
+}
+
 footer {
 	text-align: right;
 	margin-right: 20px;

@@ -127,6 +127,14 @@
 				>{{ latestTransactionId }}</a
 			>
 		</div>
+		<details>
+			<summary>Why can't I send ALL of my Tezos?</summary>
+			<p>
+				As a way to protect the network from spam and malicious actors, Tezos
+				requires a minimum balance in each wallet. Once opened, a wallet must
+				contain at least 0.275ꜩ.
+			</p>
+		</details>
 	</div>
 </template>
 

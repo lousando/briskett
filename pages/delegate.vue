@@ -68,6 +68,21 @@
 				>{{ delegationTransactionId }}</a
 			>
 		</div>
+		<details>
+			<summary>Why Delegate?</summary>
+			<p>
+				Since Tezos is an inflationary cryptocurrency it is wise to delegate to
+				a baker to avoid being diluted by inflation.
+			</p>
+		</details>
+		<details>
+			<summary>Will my coins be locked up?</summary>
+			<p>
+				No. Unlike other cryptocurrencies, Tezos implements Liquid
+				Proof-of-Stake. You are free to move your funds even while delegation to a baker is
+				active.
+			</p>
+		</details>
 	</div>
 </template>
 
