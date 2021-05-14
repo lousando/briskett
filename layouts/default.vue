@@ -36,6 +36,44 @@
 		<section>
 			<Nuxt />
 		</section>
+		<section
+			v-if="this.$store.state.connectedAccountOperations.length > 0"
+			class="operations"
+		>
+			<h3 class="is-size-3">
+				Last
+				{{ this.$store.state.connectedAccountOperations.length }} Operations
+			</h3>
+			<div
+				v-for="(operation, operationIndex) in this.$store.state
+					.connectedAccountOperations"
+				:key="operation.hash + '_' + operation.type"
+				class="operation"
+			>
+				<div v-if="operationIndex === 0" class="header">Hash</div>
+				<div v-if="operationIndex === 0" class="header">Time</div>
+				<div v-if="operationIndex === 0" class="header">Type</div>
+				<div v-if="operationIndex === 0" class="header">From</div>
+				<div v-if="operationIndex === 0" class="header">Amount</div>
+				<a
+					rel="noopener"
+					target="_blank"
+					:href="`https://tzstats.com/${operation.hash}`"
+					>{{ operation.hash.slice(0, 5) }}...{{ operation.hash.slice(-5) }}</a
+				>
+				<div>{{ operation.time }}</div>
+				<div>{{ operation.type }}</div>
+				<a
+					rel="noopener"
+					target="_blank"
+					:href="`https://tzstats.com/${operation.sender}`"
+					>{{ operation.sender.slice(0, 5) }}...{{
+						operation.sender.slice(-5)
+					}}</a
+				>
+				<div class="amount">{{ operation.volume }}</div>
+			</div>
+		</section>
 		<footer class="is-size-7">
 			<a
 				href="https://github.com/lousando/briskett"
@@ -92,8 +130,8 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="postcss">
-@import "bulma/css/bulma.min.css";
+<style lang="scss">
+@import "~bulma";
 
 :root {
 	--primary-color: #bf3d40;
@@ -105,7 +143,7 @@ export default Vue.extend({
 
 main {
 	display: grid;
-	grid-template-rows: 1fr auto 1fr;
+	grid-template-rows: 1fr auto auto 1fr;
 }
 
 header,
@@ -126,8 +164,63 @@ section {
 	box-shadow: 3px 3px 10px var(--primary-color);
 }
 
+.operations {
+	.header {
+		border-bottom: 1px solid $grey-light;
+	}
+
+	.operation {
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		gap: 2%;
+		margin-bottom: 10px;
+
+		> a {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		.amount::after {
+			content: "ꜩ";
+		}
+	}
+}
+
 a {
 	color: var(--link-color);
+}
+
+a[target="_blank"] {
+	path {
+		fill: var(--link-color);
+	}
+
+	svg:hover {
+		path {
+			fill: $grey-darker;
+		}
+	}
+
+	&:hover {
+		&::after {
+			background-color: $grey-darker;
+		}
+	}
+
+	&::after {
+		content: "";
+		display: inline-block;
+		transform: translateY(-0.5px);
+		mask-image: url("/icons/external-link-alt-solid.svg");
+		mask-repeat: no-repeat;
+		mask-position: center;
+		mask-size: auto;
+		width: 0.7em;
+		height: 0.7em;
+		margin-left: 2px;
+		background-color: var(--link-color);
+	}
 }
 
 .notification:not(.is-success, .is-danger) {
@@ -178,9 +271,5 @@ form {
 footer {
 	text-align: right;
 	margin-right: 20px;
-}
-
-footer svg:hover path {
-	fill: var(--link-color);
 }
 </style>
