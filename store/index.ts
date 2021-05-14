@@ -45,7 +45,7 @@ export const actions = {
 				}) => {
 					context.commit(
 						"setConnectedAddressBalance",
-						payload?.total_balance || 0
+						Number(payload?.total_balance)
 					);
 					context.commit("setConnectedAddressBaker", payload.delegate);
 					context.commit("setConnectedAccountIsRevealed", payload.is_revealed);

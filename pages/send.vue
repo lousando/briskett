@@ -328,9 +328,18 @@ export default Vue.extend({
 			}
 		},
 		setQuickAmount(percentage: number) {
-			this.amount =
-				(this.$store.state.connectedAddressBalance - MINIMUM_BALANCE) *
-				percentage;
+			const quickAmount: number = Number(
+				Number(
+					(this.$store.state.connectedAddressBalance - MINIMUM_BALANCE) *
+						percentage
+				).toFixed(6)
+			);
+
+			if (quickAmount > 0) {
+				this.amount = quickAmount;
+			} else {
+				this.amount = 0;
+			}
 		},
 	},
 });
