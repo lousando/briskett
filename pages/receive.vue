@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div v-if="this.$store.state.connectedAddress">
 		<vue-qrcode
 			:value="this.$store.state.connectedAddress"
 			:options="{
