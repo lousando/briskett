@@ -144,6 +144,7 @@ import TrezorConnect from "trezor-connect";
 import { RpcClient } from "@taquito/rpc";
 import { TezosToolkit } from "@taquito/taquito";
 import { TezosOperation } from "trezor-connect/lib/typescript/networks/tezos";
+import confetti from "canvas-confetti";
 import { ReadOnlySigner } from "~/assets/js/util";
 
 const MINIMUM_BALANCE = 0.275;
@@ -321,6 +322,13 @@ export default Vue.extend({
 				// clear form
 				this.destinationAddress = "";
 				this.amount = 0;
+
+				// celebrate
+				confetti({
+					particleCount: 150,
+					spread: 100,
+					origin: { y: 0.7 },
+				});
 			} catch (error) {
 				console.error(error);
 

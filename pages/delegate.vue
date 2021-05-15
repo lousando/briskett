@@ -79,8 +79,8 @@
 			<summary>Will my coins be locked up?</summary>
 			<p>
 				No. Unlike other cryptocurrencies, Tezos implements Liquid
-				Proof-of-Stake. You are free to move your funds even while delegation to a baker is
-				active.
+				Proof-of-Stake. You are free to move your funds even while delegation to
+				a baker is active.
 			</p>
 		</details>
 	</div>
@@ -89,9 +89,10 @@
 <script lang="ts">
 import Vue from "vue";
 import { RpcClient } from "@taquito/rpc";
-import TrezorConnect, { TezosDelegationOperation } from "trezor-connect";
+import TrezorConnect from "trezor-connect";
 import { TezosToolkit } from "@taquito/taquito";
 import { TezosOperation } from "trezor-connect/lib/typescript/networks/tezos";
+import confetti from "canvas-confetti";
 import { ReadOnlySigner } from "~/assets/js/util";
 
 export default Vue.extend({
@@ -239,6 +240,13 @@ export default Vue.extend({
 
 				// clear form
 				this.bakerAddress = "";
+
+				// celebrate
+				confetti({
+					particleCount: 150,
+					spread: 100,
+					origin: { y: 0.7 },
+				});
 			} catch (error) {
 				console.error(error);
 
