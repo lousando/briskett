@@ -1,6 +1,11 @@
 <template>
 	<main>
 		<header>
+			<noscript>
+				<div class="notification is-danger">
+					Please enable Javascript to use this site. Sorry Mitch.
+				</div>
+			</noscript>
 			<h1 class="is-size-1">Briskett 🥩<sub>[beta]</sub></h1>
 
 			<h3 v-if="this.$store.state.connectedAddress" class="balance is-size-3">
