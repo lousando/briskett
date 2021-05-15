@@ -42,7 +42,11 @@
 		>
 			<h3 class="is-size-3">
 				Last
-				{{ this.$store.state.connectedAccountOperations.length }} Operations
+				{{
+					this.$store.state.connectedAccountOperations.length > 1
+						? `${this.$store.state.connectedAccountOperations.length} Operations`
+						: "Operation"
+				}}
 			</h3>
 			<div
 				v-for="(operation, operationIndex) in this.$store.state
