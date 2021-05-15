@@ -1,7 +1,10 @@
 <template>
 	<main>
 		<header>
-			<div class="trezor-status-container" v-if="this.$store.state.connectedAddress">
+			<div
+				v-if="this.$store.state.connectedAddress"
+				class="trezor-status-container"
+			>
 				Trezor is&nbsp;
 				<span
 					:class="{
@@ -92,7 +95,7 @@
 		</section>
 		<footer class="is-size-7">
 			<div class="left">
-				<div>
+				<div class="node-status-container">
 					Mainnet Giga Node Status:&nbsp;
 					<span
 						:class="{
@@ -103,7 +106,7 @@
 						>{{ this.rpcNodeOnline ? "ONLINE" : "OFFLINE" }}</span
 					>
 				</div>
-				<div>
+				<div class="node-status-container">
 					TzStats API Status:&nbsp;
 					<span
 						:class="{
@@ -402,13 +405,17 @@ footer {
 		gap: 20px;
 	}
 
-	.node-status {
-		&--online {
-			color: $green;
-		}
+	.node-status-container {
+		font-size: 1rem;
 
-		&--offline {
-			color: $red;
+		.node-status {
+			&--online {
+				color: $green;
+			}
+
+			&--offline {
+				color: $red;
+			}
 		}
 	}
 
