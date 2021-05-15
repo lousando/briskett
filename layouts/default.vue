@@ -6,6 +6,19 @@
 					Please enable Javascript to use this site. Sorry Mitch.
 				</div>
 			</noscript>
+
+			<div class="trezor-status-container" v-if="this.$store.state.connectedAddress">
+				Trezor is&nbsp;
+				<span
+					:class="{
+						'trezor-status': true,
+						'trezor-status--connected': trezorConnected === true,
+						'trezor-status--disconnected': trezorConnected === false,
+					}"
+					>{{ trezorConnected ? "CONNECTED" : "DISCONNECTED" }}</span
+				>
+			</div>
+
 			<h1 class="is-size-1">Briskett 🥩<sub>[beta]</sub></h1>
 
 			<h3 v-if="this.$store.state.connectedAddress" class="balance is-size-3">
@@ -144,12 +157,14 @@
 
 <script>
 import Vue from "vue";
+import TrezorConnect, { DEVICE, DEVICE_EVENT } from "trezor-connect";
 import { version } from "../package.json";
 
 export default Vue.extend({
 	data() {
 		return {
 			version,
+			trezorConnected: false,
 			rpcNodeOnline: false,
 			tzStatsApiOnline: false,
 		};
@@ -157,6 +172,14 @@ export default Vue.extend({
 	mounted() {
 		// start from index each time
 		this.$nuxt.$router.push("/");
+
+		TrezorConnect.on(DEVICE_EVENT, (event) => {
+			if (event.type === DEVICE.CONNECT) {
+				this.trezorConnected = true;
+			} else if (event.type === DEVICE.DISCONNECT) {
+				this.trezorConnected = false;
+			}
+		});
 
 		const checkNodeStatuses = () => {
 			fetch(
@@ -220,6 +243,24 @@ section {
 	text-align: center;
 	width: min(800px, 80vw);
 	margin: 30px auto 0 auto;
+}
+
+.trezor-status-container {
+	position: fixed;
+	top: 10px;
+	left: 10px;
+	background-color: white;
+	z-index: 10;
+
+	.trezor-status {
+		&--connected {
+			color: $green;
+		}
+
+		&--disconnected {
+			color: $red;
+		}
+	}
 }
 
 .balance::after {
