@@ -1,12 +1,6 @@
 <template>
 	<main>
 		<header>
-			<noscript>
-				<div class="notification is-danger">
-					Please enable Javascript to use this site. Sorry Mitch.
-				</div>
-			</noscript>
-
 			<div class="trezor-status-container" v-if="this.$store.state.connectedAddress">
 				Trezor is&nbsp;
 				<span
