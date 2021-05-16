@@ -68,6 +68,10 @@ export const actions = {
 					time: string;
 				}
 
+				if (Object.hasOwnProperty.call(payload, "errors")) {
+					return;
+				}
+
 				const formattedOperations: Array<Object> = payload.map(
 					(operation: AccountOperations) => {
 						return {
