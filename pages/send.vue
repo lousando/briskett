@@ -166,6 +166,16 @@ export default Vue.extend({
 	},
 	methods: {
 		async sendTezos() {
+			if (this.destinationAddress === "") {
+				this.error = "Please provide a destination address.";
+				return;
+			}
+
+			if (this.amount === 0 || this.amount < 0) {
+				this.error = "Please provide an amount.";
+				return;
+			}
+
 			this.isSending = true;
 			this.error = "";
 

@@ -26,7 +26,8 @@
     "types": [
       "@nuxt/types",
       "@types/node",
-			"@types/jest"
+			"@types/jest",
+			"@types/chance"
     ]
   },
   "exclude": [
