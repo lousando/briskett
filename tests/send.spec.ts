@@ -55,7 +55,7 @@ describe("Send Page", function () {
 		expect(getByText("Please provide an amount.")).toBeTruthy();
 	});
 
-	it("prompts for a public key when it hasn't been revealed on the address", async () => {
+	it("prompts for a public key when it hasn't been revealed on the address and shows an error when rejected.", async () => {
 		const { container, getByText, getByPlaceholderText } = render(Send, {
 			store: {
 				state: {
@@ -87,6 +87,9 @@ describe("Send Page", function () {
 
 		await fireEvent.click(getByText("Send"));
 
-		expect(getByText("Prompting for public key...")).toBeTruthy();
+		expect(() => getByText("Prompting for public key...")).toBeTruthy();
+		expect(() =>
+			getByText("Failed to get public key. Please try again.")
+		).toBeTruthy();
 	});
 });
