@@ -9,9 +9,12 @@ const chance = new Chance();
 
 describe("Send Page", function () {
 	it("does not submit the form if no destination address is provided", async () => {
-		const { getByText, getByPlaceholderText } = render(Send, {
+		const { debug, getByText, getByPlaceholderText } = render(Send, {
 			store: {
-				state: state(),
+				state: {
+					...state(),
+					connectedAddress: chance.hash(),
+				},
 			},
 		});
 
@@ -26,7 +29,10 @@ describe("Send Page", function () {
 	it("does not submit the form if amount is zero or negative", async () => {
 		const { container, getByText, getByPlaceholderText } = render(Send, {
 			store: {
-				state: state(),
+				state: {
+					...state(),
+					connectedAddress: chance.hash(),
+				},
 			},
 		});
 
@@ -54,6 +60,7 @@ describe("Send Page", function () {
 			store: {
 				state: {
 					...state(),
+					connectedAddress: chance.hash(),
 					connectedAccountIsRevealed: false,
 				},
 			},
