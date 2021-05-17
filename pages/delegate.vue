@@ -109,6 +109,11 @@ export default Vue.extend({
 	},
 	methods: {
 		async delegateTezos() {
+			if (this.bakerAddress === "") {
+				this.error = "Please enter a baker address";
+				return;
+			}
+
 			this.isSending = true;
 			this.error = "";
 
