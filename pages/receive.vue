@@ -12,6 +12,7 @@
 				<input
 					type="text"
 					class="input"
+					aria-label="connected account address"
 					:value="this.$store.state.connectedAddress"
 					readonly
 				/>
