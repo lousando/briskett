@@ -330,6 +330,10 @@ a[target="_blank"] {
 	}
 }
 
+.notification a {
+	white-space: nowrap;
+}
+
 .notification:not(.is-success, .is-danger) {
 	background-color: transparent;
 	border: 2px solid var(--primary-color);
