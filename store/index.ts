@@ -41,7 +41,7 @@ export const mutations = {
 export const actions = {
 	loadConnectedAccountData(context: any) {
 		fetch(
-			`https://api.tzstats.com/explorer/account/${context.state.connectedAddress}`
+			`${process.env.NUXT_ENV_TZSTATS_URL}/explorer/account/${context.state.connectedAddress}`
 		)
 			.then((r) => r.json())
 			.then(
@@ -60,7 +60,7 @@ export const actions = {
 			);
 
 		fetch(
-			`https://api.tzstats.com/explorer/account/${context.state.connectedAddress}/operations?order=desc`
+			`${process.env.NUXT_ENV_TZSTATS_URL}/explorer/account/${context.state.connectedAddress}/operations?order=desc`
 		)
 			.then((r) => r.json())
 			.then((payload) => {

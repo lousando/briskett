@@ -193,7 +193,7 @@ export default Vue.extend({
 					this.rpcNodeOnline = false;
 				});
 
-			fetch("https://api.tzstats.com/explorer/tip")
+			fetch(`${process.env.NUXT_ENV_TZSTATS_URL}/explorer/tip`)
 				.then((r) => {
 					if (r.ok) {
 						this.tzStatsApiOnline = true;
