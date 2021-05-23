@@ -69,20 +69,69 @@
 				:key="operation.hash + '_' + operation.type"
 				class="operation"
 			>
-				<div v-if="operationIndex === 0" class="header">Hash</div>
-				<div v-if="operationIndex === 0" class="header">Time</div>
 				<div v-if="operationIndex === 0" class="header">Type</div>
-				<div v-if="operationIndex === 0" class="header">From</div>
 				<div v-if="operationIndex === 0" class="header">Amount</div>
+				<div v-if="operationIndex === 0" class="header">Time</div>
+				<div v-if="operationIndex === 0" class="header">Address</div>
+				<div v-if="operationIndex === 0" class="header">Hash</div>
+				<!-- Type -->
+				<span
+					v-if="
+						operation.type === 'transaction' &&
+						operation.sender !== $store.state.connectedAddress
+					"
+					class="receive"
+					>Receive</span
+				>
+				<span
+					v-else-if="
+						operation.type === 'transaction' &&
+						operation.sender === $store.state.connectedAddress
+					"
+					class="send"
+					>Send</span
+				>
+				<span v-else-if="operation.type === 'delegation'">Delegation</span>
+				<span
+					v-else-if="operation.type === 'reveal'"
+					class="reveal"
+					aria-label="This operation reveals your public key to the network. It needs to be done once per address, and is a requirement for verifying operation signatures on the network."
+					title="This operation reveals your public key to the network. It needs to be done once per address, and is a requirement for verifying operation signatures on the network."
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						role="img"
+						viewBox="0 0 512 512"
+					>
+						<path
+							fill="currentColor"
+							d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"
+						/>
+					</svg>
+					Reveal</span
+				>
+				<!-- Amount -->
+				<div class="amount">{{ operation.volume }}</div>
+				<!-- Time -->
+				<div>{{ operation.time }}</div>
+				<!-- Address -->
 				<a
+					v-if="
+						operation.type === 'transaction' &&
+						operation.sender === $store.state.connectedAddress
+					"
 					rel="noopener"
 					target="_blank"
-					:href="`https://tzstats.com/${operation.hash}`"
-					>{{ operation.hash.slice(0, 5) }}...{{ operation.hash.slice(-5) }}</a
+					:href="`https://tzstats.com/${operation.receiver}`"
+					>{{ operation.receiver.slice(0, 5) }}...{{
+						operation.receiver.slice(-5)
+					}}</a
 				>
-				<div>{{ operation.time }}</div>
-				<div>{{ operation.type }}</div>
 				<a
+					v-else-if="
+						operation.type === 'transaction' &&
+						operation.sender !== $store.state.connectedAddress
+					"
 					rel="noopener"
 					target="_blank"
 					:href="`https://tzstats.com/${operation.sender}`"
@@ -90,7 +139,14 @@
 						operation.sender.slice(-5)
 					}}</a
 				>
-				<div class="amount">{{ operation.volume }}</div>
+				<span v-else>&mdash;</span>
+				<!-- Hash -->
+				<a
+					rel="noopener"
+					target="_blank"
+					:href="`https://tzstats.com/${operation.hash}`"
+					>{{ operation.hash.slice(0, 5) }}...{{ operation.hash.slice(-5) }}</a
+				>
 			</div>
 		</section>
 		<footer class="is-size-7">
@@ -290,6 +346,39 @@ section {
 
 		.amount::after {
 			content: "ꜩ";
+		}
+
+		.receive,
+		.send {
+			&::before {
+				content: "";
+				display: inline-block;
+				mask-image: url("../assets/icons/arrow-right.svg");
+				mask-repeat: no-repeat;
+				mask-size: 1rem;
+				width: 1rem;
+				height: 1rem;
+				margin-right: 0.5rem;
+			}
+		}
+
+		.receive::before {
+			background-color: $green;
+			transform: rotate(45deg);
+		}
+
+		.send::before {
+			background-color: $red;
+			transform: rotate(-45deg);
+		}
+
+		.reveal {
+			cursor: help;
+
+			svg {
+				width: 1rem;
+				height: 1rem;
+			}
 		}
 	}
 }
