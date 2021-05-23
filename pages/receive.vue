@@ -45,6 +45,9 @@ export default Vue.extend({
 		VueQrcode,
 	},
 	scrollToTop: false,
+	head: {
+		title: "Receive",
+	},
 	methods: {
 		verifyAddress() {
 			TrezorConnect.tezosGetAddress({

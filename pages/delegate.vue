@@ -107,6 +107,9 @@ export default Vue.extend({
 			delegationTransactionId: "",
 		};
 	},
+	head: {
+		title: "Delegate",
+	},
 	methods: {
 		async delegateTezos() {
 			if (this.bakerAddress === "") {

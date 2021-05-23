@@ -5,6 +5,7 @@ export default {
 	// Global page headers: https://go.nuxtjs.dev/config-head
 	head: {
 		title: "Briskett",
+		titleTemplate: "Briskett | %s",
 		htmlAttrs: {
 			lang: "en",
 		},

@@ -164,6 +164,9 @@ export default Vue.extend({
 			latestTransactionId: "",
 		};
 	},
+	head: {
+		title: "Send",
+	},
 	methods: {
 		async sendTezos() {
 			if (this.destinationAddress === "") {

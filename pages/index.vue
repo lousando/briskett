@@ -45,6 +45,9 @@ export default Vue.extend({
 			connectedAddressBalance: "0.00",
 		};
 	},
+	head: {
+		title: "Home",
+	},
 	methods: {
 		getAddress() {
 			// prevent dead clicks
