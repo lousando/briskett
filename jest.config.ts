@@ -4,6 +4,7 @@
  */
 
 export default {
+	testEnvironment: "jsdom",
 	moduleNameMapper: {
 		"^@/(.*)$": "<rootDir>/$1",
 		"^~/(.*)$": "<rootDir>/$1",
