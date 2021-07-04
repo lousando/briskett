@@ -16,7 +16,9 @@
 				>
 			</div>
 
-			<h1 class="is-size-1">Briskett 🥩<sub>[beta]</sub></h1>
+			<div class="logo-container">
+				<nuxt-img src="/images/logo.svg" width="360" alt="Briskett"/>
+			</div>
 
 			<h3 v-if="this.$store.state.connectedAddress" class="balance is-size-3">
 				Balance: {{ this.$store.state.connectedAddressBalance }}
@@ -279,11 +281,17 @@ export default Vue.extend({
 @import "~bulma";
 
 :root {
-	--primary-color: #bf3d40;
-	--secondary-color: #ca7d7e;
-	--tertiary-color: #401415;
-	--link-color: #8c2d2e;
+	--primary-color: #bf545e;
+	--secondary-color: #bf545e;
+	--tertiary-color: #7d5032;
+	--section-background-color: #ccb495;
+	--background-color: #ffded4;
+	--link-color: #99404b;
 	--border-radius: 20px;
+}
+
+body {
+	background-color: var(--background-color);
 }
 
 main {
@@ -302,7 +310,7 @@ section {
 	position: fixed;
 	top: 10px;
 	left: 10px;
-	background-color: white;
+	background-color: var(--background-color);
 	z-index: 10;
 
 	.trezor-status {
@@ -316,6 +324,19 @@ section {
 	}
 }
 
+.logo-container {
+	display: inline-flex;
+	align-items: flex-end;
+
+	&::after {
+		content: "[beta]";
+		color: var(--tertiary-color);
+		font-family: monospace;
+		font-weight: bold;
+		font-size: 2rem;
+	}
+}
+
 .balance::after {
 	content: "ꜩ";
 }
@@ -324,7 +345,9 @@ section {
 	margin: 30px auto;
 	padding: 40px 50px 80px 50px;
 	border-radius: var(--border-radius);
-	box-shadow: 3px 3px 10px var(--primary-color);
+	color: var(--tertiary-color);
+	background-color: var(--section-background-color);
+	box-shadow: 5px 5px 0 var(--tertiary-color);
 }
 
 .operations {
@@ -457,11 +480,17 @@ a[target="_blank"] {
 }
 
 a.nuxt-link-active {
-	border-bottom: 3px solid var(--primary-color);
+	border-bottom: 3px solid var(--tertiary-color);
 }
 
 .tabs a:hover {
 	border-bottom: 3px solid var(--secondary-color);
+}
+
+input.input[type="text"]:focus,
+input.input[type="number"]:focus {
+	border-color: var(--secondary-color);
+	box-shadow: none;
 }
 
 form {
