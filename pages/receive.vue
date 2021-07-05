@@ -1,7 +1,7 @@
 <template>
-	<div v-if="this.$store.state.connectedAddress">
+	<div v-if="$store.state.connectedAddress">
 		<vue-qrcode
-			:value="this.$store.state.connectedAddress"
+			:value="$store.state.connectedAddress"
 			:options="{
 				errorCorrectionLevel: 'H',
 				width: 300,
@@ -10,11 +10,13 @@
 		<div class="field">
 			<div class="control">
 				<input
+					id="receiveAddress"
 					type="text"
 					class="input"
 					aria-label="connected account address"
-					:value="this.$store.state.connectedAddress"
+					:value="$store.state.connectedAddress"
 					readonly
+					@click="copyAddress"
 				/>
 			</div>
 		</div>
@@ -38,6 +40,7 @@
 import Vue from "vue";
 import VueQrcode from "@chenfengyuan/vue-qrcode";
 import TrezorConnect from "trezor-connect";
+import tippy from "tippy.js";
 
 export default Vue.extend({
 	name: "Receive",
@@ -48,7 +51,17 @@ export default Vue.extend({
 	head: {
 		title: "Receive",
 	},
+	mounted() {
+		tippy("#receiveAddress", {
+			content: "Copied!",
+			trigger: "click",
+		});
+	},
 	methods: {
+		copyAddress({ target }: any) {
+			target.select();
+			navigator.clipboard.writeText(this.$store.state.connectedAddress);
+		},
 		verifyAddress() {
 			TrezorConnect.tezosGetAddress({
 				path: this.$store.state.connectedAccountPath,
