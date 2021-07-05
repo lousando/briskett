@@ -51,7 +51,9 @@
 			</div>
 		</header>
 		<section>
-			<Nuxt />
+			<transition name="transition-main">
+				<Nuxt />
+			</transition>
 		</section>
 		<section
 			v-if="this.$store.state.connectedAccountOperations.length > 0"
@@ -292,6 +294,16 @@ export default Vue.extend({
 
 body {
 	background-color: var(--background-color);
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+}
+
+.transition-main-enter-active {
+	animation: fade-in 500ms ease-out;
 }
 
 main {
