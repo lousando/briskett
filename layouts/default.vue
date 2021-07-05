@@ -17,7 +17,7 @@
 			</div>
 
 			<div class="logo-container">
-				<nuxt-img src="/images/logo.svg" width="360" alt="Briskett"/>
+				<nuxt-img src="/images/logo.svg" width="380" alt="Briskett"/>
 			</div>
 
 			<h3 v-if="this.$store.state.connectedAddress" class="balance is-size-3">
