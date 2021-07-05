@@ -454,8 +454,23 @@ a[target="_blank"] {
 	}
 }
 
-.notification a {
-	white-space: nowrap;
+@keyframes notification-entrance {
+	from {
+		opacity: 0;
+		transform: scaleY(0);
+	}
+	to {
+		opacity: 1;
+		transform: scaleY(1);
+	}
+}
+
+.notification {
+	animation: notification-entrance 300ms linear;
+
+	a {
+		white-space: nowrap;
+	}
 }
 
 .notification:not(.is-success, .is-danger) {
