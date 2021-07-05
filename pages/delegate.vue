@@ -3,13 +3,12 @@
 		<div v-if="isSending" class="notification has-text-centered">
 			{{ statusText }}
 		</div>
-		<form
-			v-if="this.$store.state.connectedAddress"
-			@submit.prevent="delegateTezos"
-		>
+		<form v-if="$store.state.connectedAddress" @submit.prevent="delegateTezos">
 			<div class="field is-horizontal">
 				<div class="field-label">
-					<label class="label" for="destinationAddress">To</label>
+					<label class="label" for="destinationAddress">{{
+						$tCap("to")
+					}}</label>
 				</div>
 				<div class="field-body">
 					<div class="field">
@@ -19,7 +18,7 @@
 								v-model.trim="bakerAddress"
 								class="input"
 								type="text"
-								placeholder="baker address"
+								:placeholder="$t('baker_address')"
 								:disabled="isSending"
 								required
 							/>
@@ -53,7 +52,7 @@
 							}"
 							:disabled="isSending"
 						>
-							Delegate
+							{{ $tCap("delegate") }}
 						</button>
 					</div>
 				</div>
@@ -69,18 +68,15 @@
 			>
 		</div>
 		<details>
-			<summary>Why Delegate?</summary>
+			<summary>{{ $t("why_delegate") }}</summary>
 			<p>
-				Since Tezos is an inflationary cryptocurrency it is wise to delegate to
-				a baker to avoid being diluted by inflation.
+				{{ $t("why_delegate_answer") }}
 			</p>
 		</details>
 		<details>
-			<summary>Will my coins be locked up?</summary>
+			<summary>{{ $t("will_my_coins_be_locked_up") }}</summary>
 			<p>
-				No. Unlike other cryptocurrencies, Tezos implements Liquid
-				Proof-of-Stake. You are free to move your funds even while delegation to
-				a baker is active.
+				{{ $t("will_my_coins_be_locked_up_answer") }}
 			</p>
 		</details>
 	</div>

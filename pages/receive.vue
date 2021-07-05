@@ -21,16 +21,12 @@
 			</div>
 		</div>
 		<button class="button is-primary" @click="verifyAddress">
-			Verify Address
+			{{ $t("verify_address") }}
 		</button>
 		<details>
-			<summary>Why verify my address?</summary>
+			<summary>{{ $t("why_verify_my_address") }}</summary>
 			<p>
-				Although the chances are slim, in the event an attacker gains access to
-				this page (like via a malicious browser extension) they could swap out
-				your address for their own. This would lead to them getting the coins
-				that are about to be sent out and NOT YOU! Please practice good security
-				by verifying your address, especially when sending very large amounts.
+				{{ $t("why_verify_my_address_answer") }}
 			</p>
 		</details>
 	</div>

@@ -1,51 +1,51 @@
 <template>
 	<main>
 		<header>
-			<div
-				v-if="this.$store.state.connectedAddress"
-				class="trezor-status-container"
-			>
-				Trezor is&nbsp;
+			<div v-if="$store.state.connectedAddress" class="trezor-status-container">
+				{{ $t("trezor_is") }}&nbsp;
 				<span
 					:class="{
 						'trezor-status': true,
 						'trezor-status--connected': trezorConnected === true,
 						'trezor-status--disconnected': trezorConnected === false,
 					}"
-					>{{ trezorConnected ? "CONNECTED" : "DISCONNECTED" }}</span
+					>{{
+						trezorConnected ? $tUpper("connected") : $tUpper("disconnected")
+					}}</span
 				>
 			</div>
 
 			<div class="logo-container">
-				<nuxt-img src="/images/logo.svg" alt="Briskett"/>
+				<nuxt-img src="/images/logo.svg" alt="Briskett" />
+				<span class="beta-text">[{{ $t("beta") }}]</span>
 			</div>
 
-			<h3 v-if="this.$store.state.connectedAddress" class="balance is-size-3">
-				Balance: {{ this.$store.state.connectedAddressBalance }}
+			<h3 v-if="$store.state.connectedAddress" class="balance is-size-3">
+				{{ $tCap("balance") }}: {{ $store.state.connectedAddressBalance }}
 			</h3>
-			<h4 v-if="this.$store.state.connectedAddress" class="is-size-4">
-				Address: {{ this.$store.state.connectedAddress }}
+			<h4 v-if="$store.state.connectedAddress" class="is-size-4">
+				{{ $tCap("address") }}: {{ $store.state.connectedAddress }}
 			</h4>
-			<h4 v-if="this.$store.state.connectedAddressBaker" class="is-size-4">
-				Baker:
+			<h4 v-if="$store.state.connectedAddressBaker" class="is-size-4">
+				{{ $tCap("baker") }}:
 				<a
 					rel="noopener"
 					target="_blank"
-					:href="`https://tzstats.com/${this.$store.state.connectedAddressBaker}`"
-					>{{ this.$store.state.connectedAddressBaker }}</a
+					:href="`https://tzstats.com/${$store.state.connectedAddressBaker}`"
+					>{{ $store.state.connectedAddressBaker }}</a
 				>
 			</h4>
 
-			<div v-if="this.$store.state.connectedAddress" class="tabs is-centered">
+			<div v-if="$store.state.connectedAddress" class="tabs is-centered">
 				<ul>
 					<li>
-						<NuxtLink to="/send">Send</NuxtLink>
+						<NuxtLink to="/send">{{ $tCap("send") }}</NuxtLink>
 					</li>
 					<li>
-						<NuxtLink to="/delegate">Delegate</NuxtLink>
+						<NuxtLink to="/delegate">{{ $tCap("delegate") }}</NuxtLink>
 					</li>
 					<li>
-						<NuxtLink to="/receive">Receive</NuxtLink>
+						<NuxtLink to="/receive">{{ $tCap("receive") }}</NuxtLink>
 					</li>
 				</ul>
 			</div>
@@ -56,28 +56,35 @@
 			</transition>
 		</section>
 		<section
-			v-if="this.$store.state.connectedAccountOperations.length > 0"
+			v-if="$store.state.connectedAccountOperations.length > 0"
 			class="operations"
 		>
 			<h3 class="is-size-3">
-				Last
 				{{
-					this.$store.state.connectedAccountOperations.length > 1
-						? `${this.$store.state.connectedAccountOperations.length} Operations`
-						: "Operation"
+					$tc("last_operations", $store.state.connectedAccountOperations.length)
 				}}
 			</h3>
 			<div
-				v-for="(operation, operationIndex) in this.$store.state
+				v-for="(operation, operationIndex) in $store.state
 					.connectedAccountOperations"
 				:key="operation.hash + '_' + operation.type"
 				class="operation"
 			>
-				<div v-if="operationIndex === 0" class="header">Type</div>
-				<div v-if="operationIndex === 0" class="header">Amount</div>
-				<div v-if="operationIndex === 0" class="header">Time</div>
-				<div v-if="operationIndex === 0" class="header">Address</div>
-				<div v-if="operationIndex === 0" class="header">Hash</div>
+				<div v-if="operationIndex === 0" class="header">
+					{{ $tCap("type") }}
+				</div>
+				<div v-if="operationIndex === 0" class="header">
+					{{ $tCap("amount") }}
+				</div>
+				<div v-if="operationIndex === 0" class="header">
+					{{ $tCap("time") }}
+				</div>
+				<div v-if="operationIndex === 0" class="header">
+					{{ $tCap("address") }}
+				</div>
+				<div v-if="operationIndex === 0" class="header">
+					{{ $tCap("hash") }}
+				</div>
 				<!-- Type -->
 				<span
 					v-if="
@@ -85,7 +92,7 @@
 						operation.sender !== $store.state.connectedAddress
 					"
 					class="receive"
-					>Receive</span
+					>{{ $tCap("receive") }}</span
 				>
 				<span
 					v-else-if="
@@ -93,14 +100,16 @@
 						operation.sender === $store.state.connectedAddress
 					"
 					class="send"
-					>Send</span
+					>{{ $tCap("send") }}</span
 				>
-				<span v-else-if="operation.type === 'delegation'">Delegation</span>
+				<span v-else-if="operation.type === 'delegation'">{{
+					$tCap("delegation")
+				}}</span>
 				<span
 					v-else-if="operation.type === 'reveal'"
 					class="reveal"
-					aria-label="This operation reveals your public key to the network. It needs to be done once per address, and is a requirement for verifying operation signatures on the network."
-					title="This operation reveals your public key to the network. It needs to be done once per address, and is a requirement for verifying operation signatures on the network."
+					:aria-label="$t('reveal_operation_details')"
+					:title="$t('reveal_operation_details')"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -112,7 +121,7 @@
 							d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"
 						/>
 					</svg>
-					Reveal</span
+					{{ $tCap("reveal") }}</span
 				>
 				<!-- Amount -->
 				<div class="amount">{{ operation.volume }}</div>
@@ -156,25 +165,27 @@
 		<footer class="is-size-7">
 			<div class="left">
 				<div class="node-status-container">
-					Mainnet Giga Node Status:&nbsp;
+					{{ $t("mainnet_giganode_status") }}:&nbsp;
 					<span
 						:class="{
 							'node-status': true,
-							'node-status--online': this.rpcNodeOnline === true,
-							'node-status--offline': this.rpcNodeOnline === false,
+							'node-status--online': rpcNodeOnline === true,
+							'node-status--offline': rpcNodeOnline === false,
 						}"
-						>{{ this.rpcNodeOnline ? "ONLINE" : "OFFLINE" }}</span
+						>{{ rpcNodeOnline ? $tUpper("online") : $tUpper("offline") }}</span
 					>
 				</div>
 				<div class="node-status-container">
-					TzStats API Status:&nbsp;
+					{{ $t("tzstats_api_status") }}:&nbsp;
 					<span
 						:class="{
 							'node-status': true,
-							'node-status--online': this.tzStatsApiOnline === true,
-							'node-status--offline': this.tzStatsApiOnline === false,
+							'node-status--online': tzStatsApiOnline === true,
+							'node-status--offline': tzStatsApiOnline === false,
 						}"
-						>{{ this.tzStatsApiOnline ? "ONLINE" : "OFFLINE" }}</span
+						>{{
+							tzStatsApiOnline ? $tUpper("online") : $tUpper("offline")
+						}}</span
 					>
 				</div>
 			</div>
@@ -200,13 +211,15 @@
 						></path>
 					</svg>
 				</a>
-				<div>Version: {{ version }}</div>
+				<div>{{ $tCap("version") }}: {{ version }}</div>
 				<div>
 					<a href="https://fontawesome.com/" rel="noopener" target="_blank">
-						Icons from Font Awesome
+						{{ $t("font_awesome_attribution") }}
 					</a>
 				</div>
-				<div>Donations: tz1Sx6bVpeRCQGzmHMCH63AYJ8NcJGswi2sa</div>
+				<div>
+					{{ $tCap("donations") }}: tz1Sx6bVpeRCQGzmHMCH63AYJ8NcJGswi2sa
+				</div>
 			</div>
 		</footer>
 	</main>
@@ -345,8 +358,7 @@ section {
 		width: min(380px, 50vw);
 	}
 
-	&::after {
-		content: "[beta]";
+	.beta-text {
 		color: var(--tertiary-color);
 		font-family: monospace;
 		font-weight: bold;

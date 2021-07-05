@@ -1,8 +1,8 @@
 <template>
 	<div>
-		<h4 class="is-size-4">The delicious Tezos wallet.</h4>
+		<h4 v-t="'slogan'" class="is-size-4"></h4>
 		<button
-			v-if="!this.$store.connectedAddress"
+			v-if="!$store.connectedAddress"
 			:class="{
 				button: true,
 				'is-primary': true,
@@ -12,12 +12,9 @@
 			:disabled="isLoadingWallet"
 			@click="getAddress"
 		>
-			Connect Trezor*
+			{{ $t("connect_trezor") }}*
 		</button>
-		<p>
-			*Might need to disable ad blocker in order for Trezor Connect to work.<br />
-			Brave users, take down Brave Shields.
-		</p>
+		<p>*{{ $t("connect_trezor_footnote") }}</p>
 	</div>
 </template>
 
@@ -33,8 +30,8 @@ if (process.client) {
 		lazyLoad: true, // inject once first TrezorConnect method is called
 		manifest: {
 			email: process.env.NUXT_ENV_TREZOR_MANIFEST_EMAIL || "",
-			appUrl: process.env.NUXT_ENV_TREZOR_MANIFEST_APP_URL || "",
-		},
+			appUrl: process.env.NUXT_ENV_TREZOR_MANIFEST_APP_URL || ""
+		}
 	});
 }
 
@@ -42,11 +39,11 @@ export default Vue.extend({
 	data() {
 		return {
 			isLoadingWallet: false,
-			connectedAddressBalance: "0.00",
+			connectedAddressBalance: "0.00"
 		};
 	},
 	head: {
-		title: "Home",
+		title: "Home"
 	},
 	methods: {
 		getAddress() {
@@ -56,7 +53,7 @@ export default Vue.extend({
 			TrezorConnect.tezosGetAddress({
 				// todo: find a way to let user select address
 				path: this.$store.state.connectedAccountPath,
-				showOnTrezor: false,
+				showOnTrezor: false
 			}).then((result) => {
 				if (result.success) {
 					this.$store.commit("setConnectedAddress", result.payload.address);
@@ -68,8 +65,8 @@ export default Vue.extend({
 					// todo: prompt them to try again
 				}
 			});
-		},
-	},
+		}
+	}
 });
 </script>
 

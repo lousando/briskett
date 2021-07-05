@@ -35,7 +35,7 @@ export default {
 	css: ["tippy.js/dist/tippy.css"],
 
 	// Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-	plugins: [],
+	plugins: ["~/plugins/tUtils.js"],
 
 	// Auto import components: https://go.nuxtjs.dev/config-components
 	components: true,
@@ -48,7 +48,39 @@ export default {
 	],
 
 	// Modules: https://go.nuxtjs.dev/config-modules
-	modules: [],
+	modules: [
+		[
+			"nuxt-i18n",
+			{
+				locales: [
+					{
+						code: "en",
+						file: "en-us.json",
+						domain: process.env.NUXT_ENV_APP_DOMAIN,
+					},
+					{
+						code: "es",
+						file: "es.json",
+						domain: `es.${process.env.NUXT_ENV_APP_DOMAIN}`,
+					},
+					{
+						code: "de",
+						file: "de.json",
+						domain: `de.${process.env.NUXT_ENV_APP_DOMAIN}`,
+					},
+					{
+						code: "fr",
+						file: "fr.json",
+						domain: `fr.${process.env.NUXT_ENV_APP_DOMAIN}`,
+					},
+				],
+				lazy: true,
+				langDir: "~/locales/",
+				defaultLocale: "en",
+				differentDomains: true,
+			},
+		],
+	],
 
 	// Build Configuration: https://go.nuxtjs.dev/config-build
 	build: {},

@@ -3,10 +3,12 @@
 		<div v-if="isSending" class="notification has-text-centered">
 			{{ statusText }}
 		</div>
-		<form v-if="this.$store.state.connectedAddress" @submit.prevent="sendTezos">
+		<form v-if="$store.state.connectedAddress" @submit.prevent="sendTezos">
 			<div class="field is-horizontal">
 				<div class="field-label">
-					<label class="label" for="destinationAddress">To</label>
+					<label class="label" for="destinationAddress">{{
+						$tCap("to")
+					}}</label>
 				</div>
 				<div class="field-body">
 					<div class="field">
@@ -16,7 +18,7 @@
 								v-model.trim="destinationAddress"
 								class="input"
 								type="text"
-								placeholder="destination address"
+								:placeholder="$t('destination_address')"
 								:disabled="isSending"
 								required
 							/>
@@ -26,7 +28,7 @@
 			</div>
 			<div class="field is-horizontal">
 				<div class="field-label">
-					<label class="label" for="amount">Amount</label>
+					<label class="label" for="amount">{{ $tCap("amount") }}</label>
 				</div>
 				<div class="field-body">
 					<div class="field has-addons">
@@ -112,7 +114,7 @@
 							}"
 							:disabled="isSending"
 						>
-							Send
+							{{ $tCap("send") }}
 						</button>
 					</div>
 				</div>
@@ -128,11 +130,9 @@
 			>
 		</div>
 		<details>
-			<summary>Why can't I send ALL of my Tezos?</summary>
+			<summary>{{ $t("why_cant_i_send_all_tezos") }}</summary>
 			<p>
-				As a way to protect the network from spam and malicious actors, Tezos
-				requires a minimum balance in each wallet. Once opened, a wallet must
-				contain at least 0.275ꜩ.
+				{{ $t("why_cant_i_send_all_tezos_answer") }}
 			</p>
 		</details>
 	</div>
