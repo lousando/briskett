@@ -17,7 +17,7 @@
 			</div>
 
 			<div class="logo-container">
-				<nuxt-img src="/images/logo.svg" width="380" alt="Briskett"/>
+				<nuxt-img src="/images/logo.svg" alt="Briskett"/>
 			</div>
 
 			<h3 v-if="this.$store.state.connectedAddress" class="balance is-size-3">
@@ -294,6 +294,7 @@ export default Vue.extend({
 
 body {
 	background-color: var(--background-color);
+	overflow-wrap: break-word;
 }
 
 @keyframes fade-in {
@@ -340,6 +341,10 @@ section {
 	display: inline-flex;
 	align-items: flex-end;
 
+	img {
+		width: min(380px, 50vw);
+	}
+
 	&::after {
 		content: "[beta]";
 		color: var(--tertiary-color);
@@ -360,6 +365,7 @@ section {
 	color: var(--tertiary-color);
 	background-color: var(--section-background-color);
 	box-shadow: 5px 5px 0 var(--tertiary-color);
+	overflow-x: scroll;
 }
 
 .operations {
