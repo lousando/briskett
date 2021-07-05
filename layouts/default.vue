@@ -365,7 +365,7 @@ section {
 	color: var(--tertiary-color);
 	background-color: var(--section-background-color);
 	box-shadow: 5px 5px 0 var(--tertiary-color);
-	overflow-x: scroll;
+	overflow-x: auto;
 }
 
 .operations {
