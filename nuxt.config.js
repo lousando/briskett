@@ -52,12 +52,15 @@ export default {
 		[
 			"nuxt-i18n",
 			{
+				seo: true,
+				baseUrl: `https://${process.env.NUXT_ENV_APP_DOMAIN}`,
 				locales: [
 					{
 						code: "en",
 						iso: "en-US",
 						file: "en-us.json",
 						domain: `https://${process.env.NUXT_ENV_APP_DOMAIN}`,
+						isCatchallLocale: true,
 					},
 					{
 						code: "es",
