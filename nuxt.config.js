@@ -55,29 +55,36 @@ export default {
 				locales: [
 					{
 						code: "en",
+						iso: "en-US",
 						file: "en-us.json",
 						domain: process.env.NUXT_ENV_APP_DOMAIN,
 					},
 					{
 						code: "es",
+						iso: "es-ES",
 						file: "es.json",
 						domain: `es.${process.env.NUXT_ENV_APP_DOMAIN}`,
 					},
 					{
 						code: "de",
+						iso: "de-DE",
 						file: "de.json",
 						domain: `de.${process.env.NUXT_ENV_APP_DOMAIN}`,
 					},
 					{
 						code: "fr",
+						iso: "fr-FR",
 						file: "fr.json",
 						domain: `fr.${process.env.NUXT_ENV_APP_DOMAIN}`,
 					},
 				],
-				lazy: true,
+				differentDomains: true,
+				detectBrowserLanguage: {
+					useCookie: false,
+					onlyOnRoot: true,
+				},
 				langDir: "~/locales/",
 				defaultLocale: "en",
-				differentDomains: true,
 			},
 		],
 	],
