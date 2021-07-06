@@ -17,6 +17,7 @@
 	"balance": "balance",
 	"address": "address",
 	"baker": "baker",
+	"home": "home",
 	"send": "send",
 	"delegate": "delegate",
 	"delegation": "delegation",
