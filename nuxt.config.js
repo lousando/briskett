@@ -86,6 +86,18 @@ export default {
 						file: "ru.json",
 						domain: `https://ru.${process.env.NUXT_ENV_APP_DOMAIN}`,
 					},
+					{
+						code: "sk",
+						iso: "sk-SK",
+						file: "sk.json",
+						domain: `https://sk.${process.env.NUXT_ENV_APP_DOMAIN}`,
+					},
+					{
+						code: "pt",
+						iso: "pt-PT",
+						file: "pt.json",
+						domain: `https://pt.${process.env.NUXT_ENV_APP_DOMAIN}`,
+					},
 				],
 				differentDomains: true,
 				detectBrowserLanguage: {
