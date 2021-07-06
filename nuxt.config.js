@@ -84,7 +84,7 @@ export default {
 				differentDomains: true,
 				detectBrowserLanguage: {
 					useCookie: false,
-					onlyOnRoot: true,
+					onlyOnRoot: false,
 					alwaysRedirect: true,
 				},
 				langDir: "~/locales/",
