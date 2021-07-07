@@ -15,6 +15,14 @@
 				>
 			</div>
 
+			<a
+				class="help-translate"
+				href="https://localazy.com/p/briskett"
+				rel="noopener"
+				target="_blank"
+			>
+				🌎&nbsp;{{ $tCap("help_translate") }}
+			</a>
 			<select class="select language-switcher" @change="onLocaleChange">
 				<option
 					v-for="locale in $i18n.locales"
@@ -224,15 +232,6 @@
 				</a>
 				<div>{{ $tCap("version") }}: {{ version }}</div>
 				<div>
-					<a
-						href="https://localazy.com/p/briskett"
-						rel="noopener"
-						target="_blank"
-					>
-						{{ $tCap("help_translate") }}
-					</a>
-				</div>
-				<div>
 					<a href="https://fontawesome.com/" rel="noopener" target="_blank">
 						{{ $t("font_awesome_attribution") }}
 					</a>
@@ -390,9 +389,17 @@ section {
 	}
 }
 
+.help-translate {
+	position: absolute;
+	top: 5px;
+	right: 10px;
+	background-color: var(--background-color);
+	z-index: 10;
+}
+
 .language-switcher {
-	position: fixed;
-	top: 10px;
+	position: absolute;
+	top: 30px;
 	right: 10px;
 	background-color: white;
 	z-index: 10;
