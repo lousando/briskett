@@ -13,11 +13,6 @@ export default {
 			{ charset: "utf-8" },
 			{ name: "viewport", content: "width=device-width, initial-scale=1" },
 			{
-				hid: "description",
-				name: "description",
-				content: "A delicious Tezos wallet interface for Trezor.",
-			},
-			{
 				property: "og:image",
 				content: "/images/logo_mini.png",
 			},
@@ -52,7 +47,6 @@ export default {
 		[
 			"nuxt-i18n",
 			{
-				seo: true,
 				baseUrl: `https://${process.env.NUXT_ENV_APP_DOMAIN}`,
 				locales: [
 					{

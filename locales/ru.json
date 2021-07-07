@@ -19,6 +19,7 @@
   "help_translate": "Помогите мне перевести",
   "home": "home",
   "last_operations": "Последняя операция | Последние {count} операции",
+  "main_description": "Вкусный интерфейс кошелька Tezos для Trezor.",
   "mainnet_giganode_status": "Статус узла Mainnet Giga",
   "offline": "офлайн",
   "online": "онлайн",

@@ -1,6 +1,7 @@
 {
 	"briskett": "Briskett",
 	"beta": "beta",
+	"main_description": "A delicious Tezos wallet interface for Trezor.",
 	"slogan": "The delicious Trezor wallet.",
 	"connect_trezor": "Connect Trezor",
 	"connect_trezor_footnote": "Might need to disable ad blocker in order for Trezor Connect to work.\nBrave users, take down Brave Shields.",

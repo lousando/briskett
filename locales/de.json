@@ -19,6 +19,7 @@
   "help_translate": "Hilf mir zu übersetzen",
   "home": "home",
   "last_operations": "Letzte Operation | Letzte {count} Operationen",
+  "main_description": "Ein leckeres Tezos geldbörse-interface für Trezor.",
   "mainnet_giganode_status": "Mainnet Giga Node Status",
   "offline": "offline",
   "online": "online",

@@ -213,7 +213,11 @@
 				</a>
 				<div>{{ $tCap("version") }}: {{ version }}</div>
 				<div>
-					<a href="https://localazy.com/p/briskett" rel="noopener" target="_blank">
+					<a
+						href="https://localazy.com/p/briskett"
+						rel="noopener"
+						target="_blank"
+					>
 						{{ $tCap("help_translate") }}
 					</a>
 				</div>
@@ -242,6 +246,19 @@ export default Vue.extend({
 			trezorConnected: false,
 			rpcNodeOnline: false,
 			tzStatsApiOnline: false,
+		};
+	},
+	head() {
+		const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true });
+		return {
+			meta: [
+				{
+					hid: "description",
+					name: "description",
+					content: this.$t("main_description"),
+				},
+				...i18nHead.meta,
+			],
 		};
 	},
 	mounted() {
