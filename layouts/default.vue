@@ -15,6 +15,17 @@
 				>
 			</div>
 
+			<select class="select language-switcher" @change="onLocaleChange">
+				<option
+					v-for="locale in $i18n.locales"
+					:key="locale.code"
+					:selected="locale.code === $i18n.locale"
+					:value="locale.domain"
+				>
+					{{ localeEmoji(locale.code) }}&nbsp;{{ locale.code.toUpperCase() }}
+				</option>
+			</select>
+
 			<div class="logo-container">
 				<nuxt-img src="/images/logo.svg" alt="Briskett" />
 				<span class="beta-text">[{{ $t("beta") }}]</span>
@@ -237,6 +248,7 @@
 <script>
 import Vue from "vue";
 import TrezorConnect, { DEVICE, DEVICE_EVENT } from "trezor-connect";
+import localeEmoji from "locale-emoji";
 import { version } from "../package.json";
 
 export default Vue.extend({
@@ -311,6 +323,12 @@ export default Vue.extend({
 			}
 		}, 1000 * 30 /* check once every 30 seconds */);
 	},
+	methods: {
+		localeEmoji,
+		onLocaleChange({ target }) {
+			window.location.href = `https://${target.value}`;
+		},
+	},
 });
 </script>
 
@@ -370,6 +388,14 @@ section {
 			color: $red;
 		}
 	}
+}
+
+.language-switcher {
+	position: fixed;
+	top: 10px;
+	right: 10px;
+	background-color: white;
+	z-index: 10;
 }
 
 .logo-container {
