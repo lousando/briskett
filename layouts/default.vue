@@ -349,7 +349,7 @@ export default Vue.extend({
 	--border-radius: 20px;
 }
 
-body {
+html {
 	background-color: var(--background-color);
 	overflow-wrap: break-word;
 }
