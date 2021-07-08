@@ -1,5 +1,5 @@
 {
-  "address": "address",
+  "address": "endereço",
   "amount": "amount",
   "baker": "baker",
   "baker_address": "baker address",
@@ -19,8 +19,9 @@
   "help_translate": "Ajude-me a traduzir",
   "home": "home",
   "last_operations": "Last Operation | Last {count} Operations",
+  "logo_attribution": "Logo by Sameer Rizvi",
   "main_description": "Uma deliciosa interface de carteira Tezos para Trezor.",
-  "mainnet_giganode_status": "Mainnet Giga Node Status",
+  "mainnet_giganode_status": "Status do Nó Mainnet Giga",
   "offline": "offline",
   "online": "online",
   "receive": "receber",

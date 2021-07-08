@@ -19,6 +19,7 @@
   "help_translate": "Ayuda para traducir",
   "home": "inicio",
   "last_operations": "Última operación | Últimas {count} operaciones",
+  "logo_attribution": "Logo realizado por Sameer Rizvi",
   "main_description": "Una deliciosa interfaz de billetera de Tezos para Trezor.",
   "mainnet_giganode_status": "Estado de Mainnet Giga Node",
   "offline": "sin conexión",
