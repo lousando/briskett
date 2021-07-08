@@ -232,6 +232,11 @@
 				</a>
 				<div>{{ $tCap("version") }}: {{ version }}</div>
 				<div>
+					<a href="https://ssameerhrizvi.artstation.com/" rel="noopener" target="_blank">
+						{{ $t("logo_attribution") }}
+					</a>
+				</div>
+				<div>
 					<a href="https://fontawesome.com/" rel="noopener" target="_blank">
 						{{ $t("font_awesome_attribution") }}
 					</a>
