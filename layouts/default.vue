@@ -14,6 +14,16 @@
 					}}</span
 				>
 			</div>
+			<div
+				v-if="$store.state.connectedAddress"
+				class="address-number-container"
+			>
+				<span :title="$store.state.connectedAccountPath">
+					{{ $tCap("address") }}&nbsp;<span class="address-number">{{
+						getCurrentAddressNum()
+					}}</span>
+				</span>
+			</div>
 
 			<a
 				class="help-translate"
@@ -232,7 +242,11 @@
 				</a>
 				<div>{{ $tCap("version") }}: {{ version }}</div>
 				<div>
-					<a href="https://ssameerhrizvi.artstation.com/" rel="noopener" target="_blank">
+					<a
+						href="https://ssameerhrizvi.artstation.com/"
+						rel="noopener"
+						target="_blank"
+					>
 						{{ $t("logo_attribution") }}
 					</a>
 				</div>
@@ -254,6 +268,7 @@ import Vue from "vue";
 import TrezorConnect, { DEVICE, DEVICE_EVENT } from "trezor-connect";
 import localeEmoji from "locale-emoji";
 import { version } from "../package.json";
+import TezosAddressPaths from "../assets/js/tezosAddressPaths";
 
 export default Vue.extend({
 	data() {
@@ -332,6 +347,11 @@ export default Vue.extend({
 		onLocaleChange({ target }) {
 			window.location.href = `https://${target.value}`;
 		},
+		getCurrentAddressNum() {
+			return (
+				TezosAddressPaths.indexOf(this.$store.state.connectedAccountPath) + 1
+			);
+		},
 	},
 });
 </script>
@@ -391,6 +411,19 @@ section {
 		&--disconnected {
 			color: $red;
 		}
+	}
+}
+
+.address-number-container {
+	position: fixed;
+	top: 40px;
+	left: 10px;
+	background-color: var(--background-color);
+	z-index: 10;
+
+	.address-number {
+		font-weight: bold;
+		font-size: 1.1rem;
 	}
 }
 

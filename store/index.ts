@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import TezosAddressPaths from "~/assets/js/tezosAddressPaths";
 
 interface AppState {
 	connectedAccountPath: string;
@@ -10,7 +11,7 @@ interface AppState {
 }
 
 export const state = (): AppState => ({
-	connectedAccountPath: "m/44'/1729'/0'",
+	connectedAccountPath: TezosAddressPaths[0], // default to first path
 	connectedAddress: "",
 	connectedAddressBalance: 0.0,
 	connectedAccountOperations: [],
@@ -21,6 +22,9 @@ export const state = (): AppState => ({
 export const getters = {};
 
 export const mutations = {
+	setConnectedAccountPath(state: AppState, payload: string) {
+		state.connectedAccountPath = payload;
+	},
 	setConnectedAddress(state: AppState, payload: string) {
 		state.connectedAddress = payload;
 	},
