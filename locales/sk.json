@@ -27,6 +27,7 @@
   "receive": "Prijať",
   "reveal": "odhaliť",
   "reveal_operation_details": "Táto operácia odhalí váš verejný kľúč k sieti. Musí sa vykonať raz na adresu a je požiadavkou na overenie podpisov prevádzky v sieti.",
+  "rpc_node_status": "Stav uzla laboratórií ECAD",
   "send": "Odoslať",
   "slogan": "Chutná peňaženka Trezor.",
   "status": "stav",

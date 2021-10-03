@@ -194,7 +194,7 @@
 		<footer class="is-size-7">
 			<div class="left">
 				<div class="node-status-container">
-					{{ $t("mainnet_giganode_status") }}:&nbsp;
+					{{ $t("rpc_node_status") }}:&nbsp;
 					<span
 						:class="{
 							'node-status': true,
