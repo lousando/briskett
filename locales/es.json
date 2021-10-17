@@ -27,6 +27,7 @@
   "receive": "recibir",
   "reveal": "desvelar",
   "reveal_operation_details": "Esta operación revela la clave pública de la red. Debe realizarse una vez por dirección y es un requisito para verificar las firmas de operaciones en la red.",
+  "reward": "recompensa",
   "rpc_node_status": "Estado del nodo de ECAD Labs",
   "send": "enviar",
   "slogan": "La deliciosa cartera para Trezor.",

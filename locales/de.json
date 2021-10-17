@@ -27,6 +27,7 @@
   "receive": "erhalten",
   "reveal": "enthüllen",
   "reveal_operation_details": "Dieser Vorgang zeigt Ihren öffentlichen Schlüssel für das Netzwerk an. Dies muss einmal pro Adresse durchgeführt werden und ist Voraussetzung für die Überprüfung der Betriebssignaturen im Netzwerk.",
+  "reward": "belohnung",
   "rpc_node_status": "ECAD Labs Knotenstatus",
   "send": "senden",
   "slogan": "Die leckere Trezor geldbörse.",

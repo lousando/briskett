@@ -118,6 +118,14 @@
 				<span
 					v-if="
 						operation.type === 'transaction' &&
+						operation.sender === $store.state.connectedAddressBaker
+					"
+					class="reward"
+					>{{ $tCap("reward") }}</span
+				>
+				<span
+					v-else-if="
+						operation.type === 'transaction' &&
 						operation.sender !== $store.state.connectedAddress
 					"
 					class="receive"
@@ -494,6 +502,7 @@ section {
 			content: "ꜩ";
 		}
 
+		.reward,
 		.receive,
 		.send {
 			&::before {
@@ -506,6 +515,11 @@ section {
 				height: 1rem;
 				margin-right: 0.5rem;
 			}
+		}
+
+		.reward::before {
+			background-color: $cyan;
+			transform: rotate(45deg);
 		}
 
 		.receive::before {

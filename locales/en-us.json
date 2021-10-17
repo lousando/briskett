@@ -25,6 +25,7 @@
 	"delegate": "delegate",
 	"delegation": "delegation",
 	"receive": "receive",
+	"reward": "reward",
 	"reveal": "reveal",
 	"to": "to",
 	"destination_address": "destination address",
