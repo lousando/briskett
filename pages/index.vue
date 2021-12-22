@@ -22,6 +22,12 @@
 					<option :value="tezosAddressPaths[4]" :title="tezosAddressPaths[4]">
 						{{ $tCap("address") }} 5
 					</option>
+					<option :value="tezosAddressPaths[5]" :title="tezosAddressPaths[5]">
+						{{ $tCap("address") }} 6
+					</option>
+					<option :value="tezosAddressPaths[6]" :title="tezosAddressPaths[6]">
+						{{ $tCap("address") }} 7
+					</option>
 				</select>
 			</div>
 		</div>
