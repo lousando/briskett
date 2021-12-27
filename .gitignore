@@ -91,3 +91,6 @@ sw.*
 
 # localazy
 localazy.json
+
+# npm lock file
+package-lock.json
