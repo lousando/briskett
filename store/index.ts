@@ -54,10 +54,18 @@ export const actions = {
 					delegate: string;
 					is_revealed: boolean;
 				}) => {
-					context.commit(
-						"setConnectedAddressBalance",
-						Number(payload?.total_balance)
-					);
+					if (
+						payload?.total_balance === undefined ||
+						Number.isNaN(payload.total_balance)
+					) {
+						context.commit("setConnectedAddressBalance", Number(0.0));
+					} else {
+						context.commit(
+							"setConnectedAddressBalance",
+							Number(payload?.total_balance)
+						);
+					}
+
 					context.commit("setConnectedAddressBaker", payload.delegate);
 					context.commit("setConnectedAccountIsRevealed", payload.is_revealed);
 				}
