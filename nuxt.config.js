@@ -92,6 +92,12 @@ export default {
 						file: "pt.json",
 						domain: `pt.${process.env.NUXT_ENV_APP_DOMAIN}`,
 					},
+					{
+						code: "nl",
+						iso: "nl-NL",
+						file: "nl.json",
+						domain: `nl.${process.env.NUXT_ENV_APP_DOMAIN}`,
+					},
 				],
 				differentDomains: true,
 				detectBrowserLanguage: false,
