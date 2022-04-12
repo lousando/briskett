@@ -50,23 +50,23 @@ export const actions = {
 			.then((r) => r.json())
 			.then(
 				(payload: {
-					total_balance: string;
-					delegate: string;
+					spendable_balance: string;
+					baker: string;
 					is_revealed: boolean;
 				}) => {
 					if (
-						payload?.total_balance === undefined ||
-						Number.isNaN(payload.total_balance)
+						payload?.spendable_balance === undefined ||
+						Number.isNaN(payload.spendable_balance)
 					) {
 						context.commit("setConnectedAddressBalance", Number(0.0));
 					} else {
 						context.commit(
 							"setConnectedAddressBalance",
-							Number(payload?.total_balance)
+							Number(payload?.spendable_balance)
 						);
 					}
 
-					context.commit("setConnectedAddressBaker", payload.delegate);
+					context.commit("setConnectedAddressBaker", payload.baker);
 					context.commit("setConnectedAccountIsRevealed", payload.is_revealed);
 				}
 			);
