@@ -15,7 +15,7 @@
     "nuxt": "^2.15.3"
   },
   "devDependencies": {
-    "@chenfengyuan/vue-qrcode": "^2.0.0",
+    "@chenfengyuan/vue-qrcode": "1.x",
     "@nuxt/image": "^0.6.2",
     "@nuxt/types": "^2.15.3",
     "@nuxt/typescript-build": "^2.1.0",
