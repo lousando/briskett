@@ -40,6 +40,7 @@ export default {
 		// https://go.nuxtjs.dev/typescript
 		"@nuxt/typescript-build",
 		"@nuxt/image",
+		"@nuxtjs/pwa"
 	],
 
 	// Modules: https://go.nuxtjs.dev/config-modules
@@ -109,4 +110,35 @@ export default {
 
 	// Build Configuration: https://go.nuxtjs.dev/config-build
 	build: {},
+
+	pwa: {
+		manifest: {
+			name: "Briskett",
+			short_name: "Briskett",
+			start_url: "/",
+			theme_color: "#bf545e",
+			background_color: "#7d5032",
+			display: "standalone",
+			orientation: "portrait",
+		},
+		icon: {
+			source: "./static/images/logo.png",
+			purpose: ["any"],
+		},
+		workbox: {
+			offline: true,
+			cleanupOutdatedCaches: true,
+			// allows app to function offline
+			cacheAssets: true,
+			preCaching: [
+				// logos
+				"/images/logo.png",
+				"/images/logo.svg",
+				"/images/logo_mini.png",
+
+				// icons
+				"/icons/external-link-alt-solid.svg"
+			],
+		},
+	},
 };
