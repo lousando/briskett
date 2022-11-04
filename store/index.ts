@@ -12,7 +12,7 @@ interface AppState {
 
 export const state = (): AppState => ({
 	connectedAccountPath: TezosAddressPaths[0], // default to first path
-	connectedAddress: "",
+	connectedAddress: process.env.NUXT_ENV_INITIAL_CONNECTED_ADDRESS || '',
 	connectedAddressBalance: 0.0,
 	connectedAccountOperations: [],
 	connectedAddressBaker: "",
