@@ -20,7 +20,6 @@
 								type="text"
 								:placeholder="$t('baker_address')"
 								:disabled="isSending"
-								required
 							/>
 						</div>
 					</div>
@@ -44,6 +43,7 @@
 					<div class="control">
 						<button
 							type="submit"
+                                                        value="delegate"
 							:class="{
 								button: true,
 								'is-primary': true,
@@ -53,6 +53,19 @@
 							:disabled="isSending"
 						>
 							{{ $tCap("delegate") }}
+						</button>
+                                                <button
+							type="submit"
+                                                        value="undelegate"
+							:class="{
+								button: true,
+								'is-primary': false,
+								'is-medium': true,
+								'is-loading': isSending,
+							}"
+							:disabled="isSending"
+						>
+							{{ $tCap("undelegate") }}
 						</button>
 					</div>
 				</div>
@@ -107,8 +120,10 @@ export default Vue.extend({
 		title: "Delegate",
 	},
 	methods: {
-		async delegateTezos() {
-			if (this.bakerAddress === "") {
+		async delegateTezos(event) {
+                        const button = event.submitter.value;
+
+			if (this.bakerAddress === "" && button === "delegate") {
 				this.error = "Please enter a baker address";
 				return;
 			}
@@ -154,10 +169,16 @@ export default Vue.extend({
 			try {
 				this.statusText = "Estimating delegation cost...";
 
-				estimate = await tezos.estimate.setDelegate({
+                                const delegateOptions = {
 					source: this.$store.state.connectedAddress,
 					delegate: this.bakerAddress,
-				});
+				}
+
+                                if (button === "undelegate") {
+                                        delete delegateOptions.delegate;
+                                }
+
+				estimate = await tezos.estimate.setDelegate(delegateOptions);
 			} catch (error) {
 				console.error(error);
 				this.error = error.message;
@@ -214,6 +235,10 @@ export default Vue.extend({
 				gas_limit: estimate.gasLimit,
 				storage_limit: estimate.storageLimit,
 			};
+
+                        if (button === "undelegate") {
+                                delete delegationOptions.delegate;
+                        }
 
 			operation.delegation = delegationOptions;
 

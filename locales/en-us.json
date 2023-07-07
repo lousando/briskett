@@ -23,6 +23,7 @@
 	"home": "home",
 	"send": "send",
 	"delegate": "delegate",
+	"undelegate": "undelegate",
 	"delegation": "delegation",
 	"receive": "receive",
 	"reward": "reward",
