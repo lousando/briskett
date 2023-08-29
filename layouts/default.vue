@@ -73,6 +73,10 @@
 					<li>
 						<NuxtLink to="/delegate">{{ $tCap("delegate") }}</NuxtLink>
 					</li>
+          <li>
+              <!-- todo: enable when undelegation has been figured out -->
+              <!-- <NuxtLink to="/undelegate">{{ $tCap("undelegate") }}</NuxtLink> -->
+          </li>
 					<li>
 						<NuxtLink to="/receive">{{ $tCap("receive") }}</NuxtLink>
 					</li>
