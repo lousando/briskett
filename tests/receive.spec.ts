@@ -1,6 +1,6 @@
 import { render, fireEvent } from "@testing-library/vue";
 import Chance from "chance";
-import TrezorConnect from "trezor-connect";
+import TrezorConnect from "@trezor/connect-web";
 // @ts-ignore
 import Receive from "~/pages/receive";
 import { state } from "~/store";

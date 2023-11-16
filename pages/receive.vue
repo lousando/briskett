@@ -35,7 +35,7 @@
 <script lang="ts">
 import Vue from "vue";
 import VueQrcode from "@chenfengyuan/vue-qrcode";
-import TrezorConnect from "trezor-connect";
+import TrezorConnect from "@trezor/connect-web";
 import tippy from "tippy.js";
 
 export default Vue.extend({

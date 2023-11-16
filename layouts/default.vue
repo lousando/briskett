@@ -277,7 +277,7 @@
 
 <script>
 import Vue from "vue";
-import TrezorConnect, { DEVICE, DEVICE_EVENT } from "trezor-connect";
+import TrezorConnect, { DEVICE, DEVICE_EVENT } from "@trezor/connect-web";
 import localeEmoji from "locale-emoji";
 import { version } from "../package.json";
 import TezosAddressPaths from "../assets/js/tezosAddressPaths";

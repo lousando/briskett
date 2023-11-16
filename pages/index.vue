@@ -50,14 +50,12 @@
 
 <script lang="ts">
 import Vue from "vue";
-import TrezorConnect from "trezor-connect";
+import TrezorConnect from "@trezor/connect-web";
 import TezosAddressPaths from "~/assets/js/tezosAddressPaths";
 
 // only execute on browser
 if (process.client) {
 	TrezorConnect.init({
-		connectSrc:
-			process.env.NODE_ENV === "development" ? "https://localhost:8088/" : "",
 		lazyLoad: true, // inject once first TrezorConnect method is called
 		manifest: {
 			email: process.env.NUXT_ENV_TREZOR_MANIFEST_EMAIL || "",

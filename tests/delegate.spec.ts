@@ -2,7 +2,7 @@ import exp from "constants";
 import { render, fireEvent } from "@testing-library/vue";
 import Chance from "chance";
 import { RpcClient } from "@taquito/rpc";
-import TrezorConnect from "trezor-connect";
+import TrezorConnect from "@trezor/connect-web";
 // @ts-ignore
 import Delegate from "~/pages/delegate";
 import { state } from "~/store";

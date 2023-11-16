@@ -140,10 +140,9 @@
 
 <script lang="ts">
 import Vue from "vue";
-import TrezorConnect from "trezor-connect";
+import TrezorConnect, { TezosOperation } from "@trezor/connect-web";
 import { RpcClient } from "@taquito/rpc";
 import { TezosToolkit } from "@taquito/taquito";
-import { TezosOperation } from "trezor-connect/lib/typescript/networks/tezos";
 import confetti from "canvas-confetti";
 import { ReadOnlySigner } from "~/assets/js/util";
 

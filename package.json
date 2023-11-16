@@ -30,6 +30,7 @@
     "@taquito/signer": "^9.0.0",
     "@taquito/taquito": "^9.0.0",
     "@testing-library/vue": "^5.6.2",
+    "@trezor/connect-web": "^9.1.5",
     "@types/canvas-confetti": "^1.4.0",
     "@types/chance": "^1.1.1",
     "@types/chenfengyuan__vue-qrcode": "^1.0.2",
@@ -46,7 +47,6 @@
     "prettier": "^2.2.1",
     "sass": "^1.32.13",
     "tippy.js": "^6.3.1",
-    "trezor-connect": "^8.1.26",
     "ts-jest": "^27.0.3",
     "ts-node": "^10.0.0",
     "vue-jest": "^3.0.7"

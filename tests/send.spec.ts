@@ -2,7 +2,7 @@ import { render, fireEvent, getByLabelText } from "@testing-library/vue";
 // @ts-ignore
 import Send from "@/pages/send";
 import Chance from "chance";
-import TrezorConnect from "trezor-connect";
+import TrezorConnect from "@trezor/connect-web";
 import { state } from "~/store";
 
 const chance = new Chance();

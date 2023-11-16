@@ -1,8 +1,8 @@
-import * as Tezos from "trezor-connect/lib/typescript/networks/tezos";
-import * as P from "trezor-connect/lib/typescript/params";
+// import * as Tezos from "trezor-connect/lib/typescript/networks/tezos";
+// import * as P from "@trezor/connect-web/lib/typescript/params";
 
 export default {
-	init: (settings: { manifest: P.Manifest } & Partial<P.ConnectSettings>) =>
+	init: (settings: any) =>
 		settings,
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	tezosGetAddress: jest.fn().mockResolvedValue({

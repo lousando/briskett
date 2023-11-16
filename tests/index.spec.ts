@@ -1,5 +1,5 @@
 import { render, fireEvent } from "@testing-library/vue";
-import TrezorConnect from "trezor-connect";
+import TrezorConnect from "@trezor/connect-web";
 import Chance from "chance";
 // @ts-ignore
 import Index from "~/pages/index";
