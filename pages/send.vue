@@ -264,6 +264,16 @@ export default Vue.extend({
 					this.$store.state.connectedAddress
 				);
 
+				/**
+				 * Each transaction needs a counter that's given by a node.
+				 * The counter is what prevents double spend in Tezos.
+				 * A new counter is not given by a node until the previous transaction has
+				 * left the mempool.
+				 *
+				 * The counter is like the invoice id.
+				 * The counter is tied to a wallet and a new counter is generated after the
+				 * last transaction leaves the mem pool.
+				 */
 				counter = Number(contract.counter) + 1; // increment counter
 			} catch (error) {
 				console.error(error);
