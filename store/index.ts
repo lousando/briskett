@@ -45,7 +45,7 @@ export const mutations = {
 export const actions = {
 	loadConnectedAccountData(context: any) {
 		fetch(
-			`${process.env.NUXT_ENV_TZSTATS_URL}/explorer/account/${context.state.connectedAddress}`, {
+			`${process.env.NUXT_ENV_TZPRO_URL}/explorer/account/${context.state.connectedAddress}`, {
 				headers: {
 					"X-API-Key": process.env.NUXT_ENV_TZPRO_API_KEY || ""
 				}
@@ -76,7 +76,7 @@ export const actions = {
 			);
 
 		fetch(
-			`${process.env.NUXT_ENV_TZSTATS_URL}/explorer/account/${context.state.connectedAddress}/operations?order=desc`, {
+			`${process.env.NUXT_ENV_TZPRO_URL}/explorer/account/${context.state.connectedAddress}/operations?order=desc`, {
 				headers: {
 					"X-API-Key": process.env.NUXT_ENV_TZPRO_API_KEY || ""
 				}

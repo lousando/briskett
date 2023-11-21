@@ -331,7 +331,7 @@ export default Vue.extend({
 					this.rpcNodeOnline = false;
 				});
 
-			fetch(`${process.env.NUXT_ENV_TZSTATS_URL}/explorer/tip`, {
+			fetch(`${process.env.NUXT_ENV_TZPRO_URL}/explorer/tip`, {
 				headers: {
 					"X-API-Key": process.env.NUXT_ENV_TZPRO_API_KEY || ""
 				}
