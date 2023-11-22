@@ -19,7 +19,7 @@ The following is a breakdown of some of the environment variables
 # optional - The TZ Pro API endpoint and API key
 # These are used to fetch wallet data such as transactions and current balance.
 # Go here to claim a free key: https://docs.tzpro.io/intro/access
-NUXT_ENV_TZSTATS_URL=""
+NUXT_ENV_TZPRO_URL=""
 NUXT_ENV_TZPRO_API_KEY=""
 
 # required - An RPC node to use. This is the server where your transactions will be sent.
