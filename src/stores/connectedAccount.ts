@@ -3,11 +3,34 @@ import dayjs from "dayjs";
 import TezosAddressPaths from "../assets/js/tezosAddressPaths.ts";
 import { $tzProKey } from "../stores/externalServices.ts";
 
+interface Operation {
+	id: number;
+	hash: string;
+	type: "reveal" | "delegation" | "transaction";
+	block: string;
+	time: string;
+	height: number;
+	cycle: number;
+	counter: number;
+	op_n: number;
+	op_p: number;
+	status: string;
+	is_success: boolean;
+	gas_limit: number;
+	gas_used: number;
+	volume: number;
+	fee: number;
+	sender: string;
+	receiver: string;
+	baker: string;
+	confirmations: number;
+}
+
 // default to first path
 export const $connectedAccountPath = atom<string>(TezosAddressPaths[0]);
 export const $connectedAddress = atom<string>(import.meta.env.PUBLIC_INITIAL_CONNECTED_ADDRESS || "");
 export const $connectedAddressBalance = atom<number>(0.0);
-export const $connectedAccountOperations = atom<Array<Object>>([]);
+export const $connectedAccountOperations = atom<Array<Operation>>([]);
 export const $connectedAddressBaker = atom<string>("");
 export const $connectedAccountIsRevealed = atom<boolean>(false);
 
@@ -50,16 +73,13 @@ export function loadConnectedAccountData() {
 	)
 		.then((r) => r.json())
 		.then((payload) => {
-			interface AccountOperations {
-				time: string;
-			}
 
 			if (Object.hasOwnProperty.call(payload, "errors")) {
 				return;
 			}
 
-			const formattedOperations: Array<Object> = payload.map(
-				(operation: AccountOperations) => {
+			const formattedOperations: Array<Operation> = payload.map(
+				(operation: Operation) => {
 					return {
 						...operation,
 						time: dayjs(operation?.time).format("ddd, MMM DD, YYYY HH:mm:ss")
