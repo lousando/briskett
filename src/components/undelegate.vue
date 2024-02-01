@@ -53,10 +53,10 @@
 
 <script lang="ts">
 import { RpcClient } from "@taquito/rpc";
-import TrezorConnect, { TezosOperation } from "@trezor/connect-web";
+import TrezorConnect, { type TezosOperation } from "@trezor/connect-web";
 import { TezosToolkit } from "@taquito/taquito";
 import confetti from "canvas-confetti";
-import { ReadOnlySigner } from "~/assets/js/util";
+import { ReadOnlySigner } from "../assets/js/util.ts";
 
 export default {
 	name: "Undelegate",
