@@ -68,22 +68,6 @@ section {
 	}
 }
 
-.help-translate {
-	position: absolute;
-	top: 5px;
-	right: 10px;
-	background-color: var(--background-color);
-	z-index: 10;
-}
-
-.language-switcher {
-	position: absolute;
-	top: 30px;
-	right: 10px;
-	background-color: white;
-	z-index: 10;
-}
-
 .logo-container {
 	display: inline-flex;
 	align-items: flex-end;
@@ -141,7 +125,7 @@ section {
 			&::before {
 				content: "";
 				display: inline-block;
-				mask-image: url("../assets/icons/arrow-right.svg");
+				mask-image: url("../../assets/icons/arrow-right.svg");
 				mask-repeat: no-repeat;
 				mask-size: 1rem;
 				width: 1rem;
