@@ -247,7 +247,7 @@ export default function Send() {
 				</div>
 			</Show>
 			{connectedAddress() && (
-				<form onSubmit={sendTezos}>
+				<form>
 					<div class="field is-horizontal">
 						<div class="field-label">
 							<label class="label" for="destinationAddress">
@@ -352,9 +352,10 @@ export default function Send() {
 						<div class="field-body">
 							<div class="control">
 								<button
-									type="submit"
+									type="button"
 									class={`button is-primary is-medium ${isSending() ? "is-loading" : ""}`}
 									disabled={isSending()}
+									onClick={sendTezos}
 								>
 									{startCase(t("send"))}
 								</button>
