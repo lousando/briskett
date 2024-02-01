@@ -1828,7 +1828,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@taquito/signer@npm:^9.0.0":
+"@taquito/signer@npm:^9.2.0":
   version: 9.2.0
   resolution: "@taquito/signer@npm:9.2.0"
   dependencies:
@@ -1844,7 +1844,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@taquito/taquito@npm:^9.0.0, @taquito/taquito@npm:^9.2.0":
+"@taquito/taquito@npm:^9.2.0":
   version: 9.2.0
   resolution: "@taquito/taquito@npm:9.2.0"
   dependencies:
@@ -1956,7 +1956,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@trezor/connect-web@npm:^9.1.5":
+"@trezor/connect-web@npm:^9.1.11":
   version: 9.1.11
   resolution: "@trezor/connect-web@npm:9.1.11"
   dependencies:
@@ -2215,14 +2215,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/canvas-confetti@npm:^1.4.0":
+"@types/canvas-confetti@npm:^1.6.4":
   version: 1.6.4
   resolution: "@types/canvas-confetti@npm:1.6.4"
   checksum: 10c0/4a821690f0b9cdd81b0d02c0946c5b4e9e80f189e868fd8a159884d5eb9da0bdf0bfc380a61c971cc5d7b9ca2521625d46bcb5e4653988375118f57523ebe5a4
   languageName: node
   linkType: hard
 
-"@types/chance@npm:^1.1.1":
+"@types/chance@npm:^1.1.6":
   version: 1.1.6
   resolution: "@types/chance@npm:1.1.6"
   checksum: 10c0/9059986f58e7d0a5f591fcaecb74bfb3c678161eb947972bb1f6473183f74516fa6a2176e0bae83aa2825637cdf9f3a5515127e34c0763ef27bb812e8208cb12
@@ -2304,13 +2304,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:^29.2.2":
-  version: 29.5.11
-  resolution: "@types/jest@npm:29.5.11"
+"@types/jest@npm:^29.5.12":
+  version: 29.5.12
+  resolution: "@types/jest@npm:29.5.12"
   dependencies:
     expect: "npm:^29.0.0"
     pretty-format: "npm:^29.0.0"
-  checksum: 10c0/524a3394845214581278bf4d75055927261fbeac7e1a89cd621bd0636da37d265fe0a85eac58b5778758faad1cbd7c7c361dfc190c78ebde03a91cce33463261
+  checksum: 10c0/25fc8e4c611fa6c4421e631432e9f0a6865a8cb07c9815ec9ac90d630271cad773b2ee5fe08066f7b95bebd18bb967f8ce05d018ee9ab0430f9dfd1d84665b6f
   languageName: node
   linkType: hard
 
@@ -2369,12 +2369,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^18.11.9":
-  version: 18.19.11
-  resolution: "@types/node@npm:18.19.11"
+"@types/node@npm:^20.11.16":
+  version: 20.11.16
+  resolution: "@types/node@npm:20.11.16"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: 10c0/159e6dc80868970531fbf8f06dd305eab75b1dc7a6788aae3a6dbc606dc7cacd14fc135e9bed40cb2824f01a57d14aeffff7fe494c17859b41e7a8f81a321716
+  checksum: 10c0/4886b90278e9c877a84efd3edd4667cd990e032d77268d2a798b99ebc1901ea336fa7dfbe9eaf4ad6ad1da9ce2ec31baf300038a3905838692362eb19904ebde
   languageName: node
   linkType: hard
 
@@ -2850,9 +2850,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"astro@npm:^4.2.6":
-  version: 4.2.7
-  resolution: "astro@npm:4.2.7"
+"astro@npm:^4.3.1":
+  version: 4.3.1
+  resolution: "astro@npm:4.3.1"
   dependencies:
     "@astrojs/compiler": "npm:^2.5.0"
     "@astrojs/internal-helpers": "npm:0.2.1"
@@ -2924,7 +2924,7 @@ __metadata:
       optional: true
   bin:
     astro: astro.js
-  checksum: 10c0/5bfa6c0e3ab2cf7fc7620bdf42e80096f749e420f85365aefbc96c9dd975dcb4f4e405be9cf8ce47179ecbe98157bf394e58fb5b2e1076af9107dc2a5fe4debb
+  checksum: 10c0/0c5d0af7b18cac25c2990f4614c78e27aae727b7c97b2eb916ce1b0ce01684cee43b9064061c1a3645dc95ba73416f8cee07e7bec79baf242d894d0a3680a894
   languageName: node
   linkType: hard
 
@@ -3476,31 +3476,31 @@ __metadata:
     "@nanostores/router": "npm:^0.13.0"
     "@nanostores/solid": "npm:^0.4.2"
     "@solid-primitives/i18n": "npm:^2.0.1"
-    "@taquito/signer": "npm:^9.0.0"
-    "@taquito/taquito": "npm:^9.0.0"
-    "@trezor/connect-web": "npm:^9.1.5"
-    "@types/canvas-confetti": "npm:^1.4.0"
-    "@types/chance": "npm:^1.1.1"
-    "@types/jest": "npm:^29.2.2"
-    "@types/node": "npm:^18.11.9"
+    "@taquito/signer": "npm:^9.2.0"
+    "@taquito/taquito": "npm:^9.2.0"
+    "@trezor/connect-web": "npm:^9.1.11"
+    "@types/canvas-confetti": "npm:^1.6.4"
+    "@types/chance": "npm:^1.1.6"
+    "@types/jest": "npm:^29.5.12"
+    "@types/node": "npm:^20.11.16"
     "@types/qrcode": "npm:^1.5.5"
     add: "npm:^2.0.6"
-    astro: "npm:^4.2.6"
+    astro: "npm:^4.3.1"
     babel-core: "npm:^6.26.3"
-    bulma: "npm:^0.9.2"
-    canvas-confetti: "npm:^1.4.0"
-    chance: "npm:^1.1.7"
-    dayjs: "npm:^1.10.4"
-    jest: "npm:^27.0.6"
+    bulma: "npm:^0.9.4"
+    canvas-confetti: "npm:^1.9.2"
+    chance: "npm:^1.1.11"
+    dayjs: "npm:^1.11.10"
+    jest: "npm:^27.5.1"
     locale-emoji: "npm:^0.3.0"
     nanostores: "npm:^0.9.5"
-    prettier: "npm:^2.2.1"
+    prettier: "npm:^2.8.8"
     qrcode: "npm:^1.5.3"
-    sass: "npm:^1.32.13"
+    sass: "npm:^1.70.0"
     solid-js: "npm:^1.8.12"
-    tippy.js: "npm:^6.3.1"
-    ts-jest: "npm:^27.0.3"
-    ts-node: "npm:^10.0.0"
+    tippy.js: "npm:^6.3.7"
+    ts-jest: "npm:^27.1.5"
+    ts-node: "npm:^10.9.2"
     typescript: "npm:^5.3.3"
   languageName: unknown
   linkType: soft
@@ -3641,7 +3641,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bulma@npm:^0.9.2":
+"bulma@npm:^0.9.4":
   version: 0.9.4
   resolution: "bulma@npm:0.9.4"
   checksum: 10c0/ee4db3427f8ba24fa83d112dca87b99ba009ded9b159f72c4c35e04d1d25c636c3275db1268315427226cdd6c27c00e4147d4696b89cf1c4d57945f80dd16331
@@ -3721,7 +3721,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"canvas-confetti@npm:^1.4.0":
+"canvas-confetti@npm:^1.9.2":
   version: 1.9.2
   resolution: "canvas-confetti@npm:1.9.2"
   checksum: 10c0/6247eb95bf710522f5822728dc29d74d0747b7ca0a85dfa90fd159f0f405527fbaedbdbb0e6917f6cd1560cf1355286c2c94bd3e89bc2147fb0fcf8e1c64126a
@@ -3785,7 +3785,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chance@npm:^1.1.7":
+"chance@npm:^1.1.11":
   version: 1.1.11
   resolution: "chance@npm:1.1.11"
   checksum: 10c0/d17cadeda91f16ab3b2459d39980712428cacf825e3262f923a2bd896ccf40ff6b97967c816d5152e9841af376bc1dbdc1acd9b792d5828b021753fbe334f086
@@ -4208,7 +4208,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dayjs@npm:^1.10.4":
+"dayjs@npm:^1.11.10":
   version: 1.11.10
   resolution: "dayjs@npm:1.11.10"
   checksum: 10c0/4de9af50639d47df87f2e15fa36bb07e0f9ed1e9c52c6caa1482788ee9a384d668f1dbd00c54f82aaab163db07d61d2899384b8254da3a9184fc6deca080e2fe
@@ -6695,7 +6695,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest@npm:^27.0.6":
+"jest@npm:^27.5.1":
   version: 27.5.1
   resolution: "jest@npm:27.5.1"
   dependencies:
@@ -8526,7 +8526,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^2.2.1":
+"prettier@npm:^2.8.8":
   version: 2.8.8
   resolution: "prettier@npm:2.8.8"
   bin:
@@ -9280,7 +9280,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.32.13":
+"sass@npm:^1.70.0":
   version: 1.70.0
   resolution: "sass@npm:1.70.0"
   dependencies:
@@ -10045,7 +10045,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tippy.js@npm:^6.3.1":
+"tippy.js@npm:^6.3.7":
   version: 6.3.7
   resolution: "tippy.js@npm:6.3.7"
   dependencies:
@@ -10133,7 +10133,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-jest@npm:^27.0.3":
+"ts-jest@npm:^27.1.5":
   version: 27.1.5
   resolution: "ts-jest@npm:27.1.5"
   dependencies:
@@ -10173,7 +10173,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-node@npm:^10.0.0":
+"ts-node@npm:^10.9.2":
   version: 10.9.2
   resolution: "ts-node@npm:10.9.2"
   dependencies:
