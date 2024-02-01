@@ -1,7 +1,7 @@
 import { createResource, createSignal } from "solid-js";
 import { isServer } from "solid-js/web";
 import * as i18n from "@solid-primitives/i18n";
-import en from "../../locales/en.json";
+import rawEnDict from "../../locales/en.json";
 
 export const availableLocales = [
 	"en",
@@ -16,19 +16,20 @@ export const availableLocales = [
 
 export const [currentLocale, setCurrentLocale] = createSignal("en");
 
-const [dict] = isServer ? [en] : createResource(currentLocale, async function fetchDictionary(locale = "en") {
+const [dict] = isServer ? [rawEnDict] : createResource(currentLocale, async function fetchDictionary(locale = "en") {
 	if (availableLocales.includes(locale)) {
-		const dict = await import(`../../locales/${locale}.json`);
-		return i18n.flatten(dict);
+		const rawDict = await import(`../../locales/${locale}.json`);
+		// use english to fill in translation gaps
+		return i18n.flatten(Object.assign({}, rawEnDict, rawDict));
 	}
 
 	// fallback to english
-	const dict = await import(`../../locales/en.json`);
-	return i18n.flatten(dict);
+	const rawDict = await import(`../../locales/en.json`);
+	return i18n.flatten(rawDict);
 }, {
-	initialValue: i18n.flatten(en)
+	initialValue: i18n.flatten(rawEnDict)
 });
 
-export const t = isServer ? (key) => en[key] : i18n.translator(dict);
+export const t = isServer ? (key) => rawEnDict[key] : i18n.translator(dict);/**/
 
 export const resolveTemplate = i18n.resolveTemplate;
