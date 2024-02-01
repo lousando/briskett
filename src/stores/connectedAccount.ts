@@ -1,6 +1,7 @@
 import { atom } from "nanostores";
 import dayjs from "dayjs";
 import TezosAddressPaths from "../assets/js/tezosAddressPaths.ts";
+import { $tzProKey } from "../stores/externalServices.ts";
 
 // default to first path
 export const $connectedAccountPath = atom<string>(TezosAddressPaths[0]);
@@ -15,7 +16,7 @@ export function loadConnectedAccountData() {
 	fetch(
 		`${import.meta.env.PUBLIC_TZPRO_URL}/explorer/account/${$connectedAddress.get()}`, {
 			headers: {
-				"X-API-Key": import.meta.env.PUBLIC_TZPRO_API_KEY || ""
+				"X-API-Key": $tzProKey.get() || import.meta.env.PUBLIC_TZPRO_API_KEY
 			}
 		}
 	)
@@ -43,7 +44,7 @@ export function loadConnectedAccountData() {
 	fetch(
 		`${import.meta.env.PUBLIC_TZPRO_URL}/explorer/account/${$connectedAddress.get()}/operations?order=desc`, {
 			headers: {
-				"X-API-Key": import.meta.env.PUBLIC_TZPRO_API_KEY || ""
+				"X-API-Key": $tzProKey.get() || import.meta.env.PUBLIC_TZPRO_API_KEY
 			}
 		}
 	)

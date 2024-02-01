@@ -1,9 +1,8 @@
-import { createSignal, onMount, For, Show } from "solid-js";
+import { createSignal, onMount, Show } from "solid-js";
 import startCase from "lodash/startCase";
 import { useStore } from "@nanostores/solid";
 import { $trezorConnected } from "../stores/trezor.ts";
-import { availableLocales, currentLocale, setCurrentLocale, t } from "../assets/js/i18n.ts";
-import localeEmoji from "locale-emoji";
+import { t } from "../assets/js/i18n.ts";
 import TezosAddressPaths from "../assets/js/tezosAddressPaths.ts";
 import {
 	$connectedAccountPath,
@@ -26,11 +25,8 @@ export default function Header() {
 	onMount(() => {
 		$router.listen((r) => {
 			setRoute(r.route);
-		})
-
-		// change to the current local on init
-		setCurrentLocale(navigator.language);
-	})
+		});
+	});
 
 	return (
 		<header>
@@ -54,24 +50,6 @@ export default function Header() {
           </span>
 				</div>
 			</Show>
-
-			<a
-				class="help-translate"
-				href="https://localazy.com/p/briskett"
-				rel="noopener"
-				target="_blank"
-			>
-				🌎&nbsp;{t("help_translate")}
-			</a>
-			<select class="select language-switcher" onChange={({ target }) => setCurrentLocale(target.value)}>
-				<For each={availableLocales}>
-					{(locale) => (
-						<option selected={locale === currentLocale()} value={locale}>
-							{localeEmoji(locale)}&nbsp;{locale?.toUpperCase()}
-						</option>
-					)}
-				</For>
-			</select>
 
 			<div class="logo-container">
 				<img src="/images/logo.svg?url" alt="Briskett" />

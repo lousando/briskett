@@ -47,5 +47,10 @@
 	"why_undelegate_answer": "Since some jurisdictions tax crypto rewards as income, it can be beneficial to undelegate to avoid creating taxable events.",
 	"why_verify_my_address": "Why verify my address?",
 	"why_verify_my_address_answer": "Although the chances are slim, in the event an attacker gains access to\n\t\t\t\tthis page (like via a malicious browser extension) they could swap out\n\t\t\t\tyour address for their own. This would lead to them getting the coins\n\t\t\t\tthat are about to be sent out and NOT YOU! Please practice good security\n\t\t\t\tby verifying your address, especially when sending very large amounts.",
-	"reveal_operation_details": "This operation reveals your public key to the network. It needs to be done once per address, and is a requirement for verifying operation signatures on the network."
+	"reveal_operation_details": "This operation reveals your public key to the network. It needs to be done once per address, and is a requirement for verifying operation signatures on the network.",
+	"tzpro_api_key": "TzStats/TzPro API Key",
+	"tzpro_api_key_click_to_add_own_key": "Click here to add your own key",
+	"tzpro_api_key_help": "Instructions are available at",
+	"save_and_refresh": "Save & Refresh",
+	"refresh_page_after_changing": "Refreshes the page after changing settings to apply changes."
 }

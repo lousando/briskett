@@ -2,6 +2,7 @@
 import "bulma/css/bulma.min.css";
 import "../assets/styles/main.scss";
 
+import SettingsCorner from "../components/settingsCorner/settingsCorner.tsx";
 import Header from "../components/header.tsx";
 import Router from "../components/router.tsx";
 import AccountOperations from "../components/accountOperations.jsx";
@@ -39,6 +40,7 @@ const computedTitle = title ? `${title} | Briskett` : "Briskett";
 	</div>
 </noscript>
 <main>
+	<SettingsCorner client:idle />
 	<Header pathName={Astro.url.pathname} client:idle />
 	<section>
 		<Router client:load />
@@ -50,7 +52,7 @@ const computedTitle = title ? `${title} | Briskett` : "Briskett";
 <script>
 	import TrezorConnect, { DEVICE, DEVICE_EVENT } from "@trezor/connect-web";
 	import { $trezorConnected } from "../stores/trezor.ts";
-	import { $rpcNodeOnline, $tzStatsApiOnline } from "../stores/externalServices.ts";
+	import { $rpcNodeOnline, $tzProApiOnline, $tzProKey } from "../stores/externalServices.ts";
 	import { loadConnectedAccountData, $connectedAddress } from "../stores/connectedAccount";
 
 	TrezorConnect.init({
@@ -86,18 +88,18 @@ const computedTitle = title ? `${title} | Briskett` : "Briskett";
 
 		fetch(`${import.meta.env.PUBLIC_TZPRO_URL}/explorer/tip`, {
 			headers: {
-				"X-API-Key": import.meta.env.PUBLIC_TZPRO_API_KEY || ""
+				"X-API-Key": $tzProKey.get() || import.meta.env.PUBLIC_TZPRO_API_KEY
 			}
 		})
 			.then((r) => {
 				if (r.ok) {
-					$tzStatsApiOnline.set(true);
+					$tzProApiOnline.set(true);
 				} else {
-					$tzStatsApiOnline.set(false);
+					$tzProApiOnline.set(false);
 				}
 			})
 			.catch(() => {
-				$tzStatsApiOnline.set(false);
+				$tzProApiOnline.set(false);
 			});
 	};
 

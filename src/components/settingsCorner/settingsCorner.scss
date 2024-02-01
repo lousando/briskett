@@ -1,0 +1,41 @@
+.settings-corner {
+	position: absolute;
+	top: 5px;
+	right: 10px;
+	z-index: 10;
+	display: flex;
+	flex-direction: column;
+	align-items: end;
+	row-gap: 0.5rem;
+
+	.help-translate {
+		background-color: var(--background-color);
+	}
+
+	.language-switcher {
+		background-color: white;
+		max-width: fit-content;
+	}
+
+	.additional-settings-button {
+		cursor: pointer;
+
+		svg path {
+			fill: var(--link-color)
+		}
+	}
+}
+
+.settings-modal {
+	position: fixed;
+	top: 25%;
+	left: 0;
+	width: 30vw;
+	z-index: 500;
+
+	.close-button {
+		cursor: pointer;
+		border: none;
+		background-color: transparent;
+	}
+}
