@@ -41,7 +41,7 @@ const computedTitle = title ? `${title} | Briskett` : "Briskett";
 </noscript>
 <main>
 	<SettingsCorner client:idle />
-	<Header pathName={Astro.url.pathname} client:idle />
+	<Header client:idle />
 	<section>
 		<Router client:load />
 	</section>
