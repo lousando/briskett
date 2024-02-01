@@ -14,11 +14,12 @@
   "packageManager": "yarn@4.1.0",
   "scripts": {
     "watch": "astro dev",
-    "build": "astro build",
+    "build": "rm -rf ./dist && astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.4.1",
     "@astrojs/solid-js": "^4.0.1",
     "@nanostores/i18n": "^0.12.0",
     "@nanostores/persistent": "^0.9.1",
@@ -32,6 +33,7 @@
     "@types/chance": "^1.1.1",
     "@types/jest": "^29.2.2",
     "@types/node": "^18.11.9",
+    "@types/qrcode": "^1.5.5",
     "add": "^2.0.6",
     "astro": "^4.2.6",
     "babel-core": "^6.26.3",
@@ -48,6 +50,7 @@
     "solid-js": "^1.8.12",
     "tippy.js": "^6.3.1",
     "ts-jest": "^27.0.3",
-    "ts-node": "^10.0.0"
+    "ts-node": "^10.0.0",
+    "typescript": "^5.3.3"
   }
 }

@@ -73,7 +73,7 @@ export default function Delegate() {
 				source: connectedAddress(),
 				delegate: bakerAddress()
 			});
-		} catch (error) {
+		} catch (error: any) {
 			console.error(error);
 			setError(error.message);
 			setIsSending(false);
@@ -163,7 +163,7 @@ export default function Delegate() {
 				spread: 100,
 				origin: { y: 0.7 }
 			});
-		} catch (error) {
+		} catch (error: any) {
 			console.error(error);
 
 			if (Array.isArray(error.body)) {

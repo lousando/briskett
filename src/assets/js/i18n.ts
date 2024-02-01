@@ -23,6 +23,10 @@ export let t: Function;
 
 if (!isServer) {
 	const [dict] = createResource(currentLocale, async function fetchDictionary(locale = "en"): Promise<Dictionary> {
+		if (locale === "en") {
+			return i18n.flatten(rawEnDict);
+		}
+
 		if (availableLocales.includes(locale)) {
 			const rawDict: RawDictionary = await import(`../../locales/${locale}.json`);
 			// use english to fill in translation gaps
@@ -30,8 +34,7 @@ if (!isServer) {
 		}
 
 		// fallback to english
-		const rawDict = await import(`../../locales/en.json`);
-		return i18n.flatten(rawDict);
+		return i18n.flatten(rawEnDict);
 	}, {
 		initialValue: i18n.flatten(rawEnDict)
 	});

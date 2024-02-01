@@ -20,11 +20,11 @@ export default function Header() {
 	const connectedAccountPath = useStore($connectedAccountPath);
 	const connectedAddressBaker = useStore($connectedAddressBaker);
 
-	const [route, setRoute] = createSignal<string>($router.get()?.route);
+	const [route, setRoute] = createSignal<string>($router.get()?.route ?? "");
 
 	onMount(() => {
 		$router.listen((r) => {
-			setRoute(r.route);
+			setRoute(r?.route ?? "");
 		});
 	});
 

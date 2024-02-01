@@ -4,8 +4,7 @@ import { $tzProKey } from "../../stores/externalServices.ts";
 import localeEmoji from "locale-emoji";
 import { $settingsModalIsShown } from "../../stores/settingsModal.ts";
 import { useStore } from "@nanostores/solid";
-
-import("./settingsCorner.scss");
+import "./settingsCorner.scss";
 
 export default function SettingsCorner() {
 	const showModal = useStore($settingsModalIsShown);

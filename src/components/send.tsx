@@ -94,7 +94,7 @@ export default function Send() {
 				to: destinationAddress(),
 				amount: amount()
 			});
-		} catch (error) {
+		} catch (error: any) {
 			console.error(error);
 
 			if (error?.message?.includes("balance_too_low")) {
@@ -209,7 +209,7 @@ export default function Send() {
 				spread: 100,
 				origin: { y: 0.7 }
 			});
-		} catch (error) {
+		} catch (error: any) {
 			console.error(error);
 
 			if (Array.isArray(error.body)) {

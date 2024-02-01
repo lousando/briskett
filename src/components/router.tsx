@@ -5,14 +5,14 @@ import { createSignal, lazy, Match, onMount, Switch } from "solid-js";
 
 
 export default function Router() {
-	const [route, setRoute] = createSignal<string>($router.get()?.route);
+	const [route, setRoute] = createSignal<string>($router.get()?.route ?? "");
 	const LazySend = lazy(() => import("../components/send.jsx"));
 	const LazyDelegate = lazy(() => import("../components/delegate.tsx"));
 	const LazyReceive = lazy(() => import("./receive.tsx"));
 
 	onMount(() => {
 		$router.listen((r) => {
-			setRoute(r.route);
+			setRoute(r?.route || "");
 		});
 	});
 

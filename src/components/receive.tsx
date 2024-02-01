@@ -22,8 +22,8 @@ export default function Receive() {
 		QRCode.toCanvas(canvas, connectedAddress(), { errorCorrectionLevel: "H", width: 300 });
 	});
 
-	const copyAddress = ({ target }) => {
-		target.select();
+	const copyAddress = (event: MouseEvent) => {
+		(event.target as HTMLInputElement)?.select();
 		navigator.clipboard.writeText($connectedAddress.get());
 	};
 
