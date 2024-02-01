@@ -36,7 +36,8 @@ if (!isServer) {
 		// fallback to english
 		return i18n.flatten(rawEnDict);
 	}, {
-		initialValue: i18n.flatten(rawEnDict)
+		initialValue: i18n.flatten(rawEnDict),
+		ssrLoadFrom: "initial",
 	});
 
 	t = i18n.translator(dict);
