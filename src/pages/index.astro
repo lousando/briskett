@@ -107,6 +107,11 @@ const computedTitle = title ? `${title} | Briskett` : "Briskett";
 
 	setInterval(checkNodeStatuses, 1000 * 60 /* check once every minute */);
 
+	// initial load in case we're in dev mode
+	if ($connectedAddress.get()) {
+		loadConnectedAccountData();
+	}
+
 	setInterval(() => {
 		if ($connectedAddress.get()) {
 			loadConnectedAccountData();
