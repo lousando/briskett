@@ -1,5 +1,4 @@
 import { createResource, createSignal } from "solid-js";
-import { isServer } from "solid-js/web";
 import * as i18n from "@solid-primitives/i18n";
 import rawEnDict from "../../locales/en.json";
 
@@ -21,7 +20,7 @@ export const [currentLocale, setCurrentLocale] = createSignal("en");
 
 export let t: Function;
 
-if (!isServer) {
+if (!import.meta.env.SSR) {
 	const [dict] = createResource(currentLocale, async function fetchDictionary(locale = "en"): Promise<Dictionary> {
 		if (locale === "en") {
 			return i18n.flatten(rawEnDict);
