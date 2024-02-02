@@ -25,12 +25,3 @@ export class ReadOnlySigner implements Signer {
 		throw new Error("Cannot sign");
 	}
 }
-
-export async function renderSlot(pathName = "") {
-	const innerHTML = await fetch(pathName).then((r) => r.text());
-	const slot = document?.getElementById("slot");
-
-	if 	(slot) {
-		slot.innerHTML = innerHTML;
-	}
-}
