@@ -52,5 +52,6 @@
 	"tzpro_api_key_click_to_add_own_key": "Click here to add your own key",
 	"tzpro_api_key_help": "Instructions are available at",
 	"save_and_refresh": "Save & Refresh",
-	"refresh_page_after_changing": "Refreshes the page after changing settings to apply changes."
+	"refresh_page_after_changing": "Refreshes the page after changing settings to apply changes.",
+	"something_went_wrong": "Something went wrong. Please try again later."
 }

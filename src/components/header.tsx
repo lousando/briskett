@@ -52,7 +52,9 @@ export default function Header() {
 			</Show>
 
 			<div class="logo-container">
-				<img src="/images/logo.svg?url" alt="Briskett" />
+				<a href={getPagePath($router, "home")}>
+					<img src="/images/logo.svg?url" alt="Briskett" />
+				</a>
 				<span class="beta-text">[{t("beta")}]</span>
 			</div>
 
