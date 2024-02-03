@@ -5,7 +5,7 @@ A delicious Tezos wallet interface for Trezor.
 ## Dependencies 🧱
 
 - Node >= 20.x
-- Yarn 4
+- PNPM >= 8.x
 - The [Astro](https://astro.build/) Web Framework
 - The [SolidJs](https://www.solidjs.com/) Component Framework
 
@@ -28,17 +28,17 @@ Run the following to get the web app going.
 
 ```bash
 # install dependencies
-$ yarn
+$ pnpm i
 
 # serve with hot reload at http://localhost:4321
-$ yarn watch
+$ pnpm watch
 
 # Extras
 # ======
 
 # optional - generate static project
-$ yarn build
+$ pnpm build
 
 # optional - launch web server (after building)
-$ yarn preview
+$ pnpm preview
 ```
