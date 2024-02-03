@@ -23,14 +23,6 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-# No NPM Stuff
+# No NPM Stuff or Yarn Stuff
 package-lock.json
-
-# Disable Yarn Zero Installs (Preferred)
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
+yarn.lock
