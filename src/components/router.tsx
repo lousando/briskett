@@ -7,8 +7,8 @@ import { createSignal, ErrorBoundary, lazy, Match, onMount, Switch } from "solid
 
 export default function Router() {
 	const [route, setRoute] = createSignal<string>($router.get()?.route ?? "home");
-	const LazySend = lazy(() => import("../components/send.jsx"));
-	const LazyDelegate = lazy(() => import("../components/delegate.tsx"));
+	const LazySend = lazy(() => import("./send.jsx"));
+	const LazyDelegate = lazy(() => import("./delegate.tsx"));
 	const LazyReceive = lazy(() => import("./receive.tsx"));
 
 	onMount(() => {

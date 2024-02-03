@@ -4,6 +4,8 @@
 		"jsx": "preserve",
 		"jsxImportSource": "solid-js",
 		"allowImportingTsExtensions": true,
+		"esModuleInterop": false,
+		"allowSyntheticDefaultImports": true,
 		"typeRoots": ["./node_modules/@types", "./@types"]
 	}
 }

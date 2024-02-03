@@ -3,11 +3,14 @@ import { RpcClient } from "@taquito/rpc";
 import TrezorConnect, { type TezosOperation } from "@trezor/connect-web";
 import { TezosToolkit } from "@taquito/taquito";
 import confetti from "canvas-confetti";
-import { ReadOnlySigner } from "../assets/js/util.ts";
+import { ReadOnlySigner, startCase } from "../assets/js/util.ts";
 import { t } from "../assets/js/i18n.ts";
 import { useStore } from "@nanostores/solid";
-import { $connectedAccountIsRevealed, $connectedAccountPath, $connectedAddress } from "../stores/connectedAccount.ts";
-import startCase from "lodash/startCase";
+import {
+	$connectedAccountIsRevealed,
+	$connectedAccountPath,
+	$connectedAddress,
+} from "../stores/connectedAccount.ts";
 
 export default function Delegate() {
 	// global state
@@ -32,7 +35,7 @@ export default function Delegate() {
 		setError("");
 
 		const tezosRpc = new RpcClient(
-			import.meta.env.PUBLIC_TAQUITO_RPC_URL || ""
+			import.meta.env.PUBLIC_TAQUITO_RPC_URL || "",
 		);
 
 		setStatusText("Retrieving head block...");
@@ -41,14 +44,14 @@ export default function Delegate() {
 		const headBlockHash: string = blockHead.hash;
 
 		const tezos = new TezosToolkit(
-			import.meta.env.PUBLIC_TAQUITO_RPC_URL || ""
+			import.meta.env.PUBLIC_TAQUITO_RPC_URL || "",
 		);
 
 		setStatusText("Prompting for public key...");
 
 		const publicKeyResult = await TrezorConnect.tezosGetPublicKey({
 			path: connectedAccountPath(),
-			showOnTrezor: false
+			showOnTrezor: false,
 		});
 
 		if (!publicKeyResult.success) {
@@ -71,7 +74,7 @@ export default function Delegate() {
 
 			estimate = await tezos.estimate.setDelegate({
 				source: connectedAddress(),
-				delegate: bakerAddress()
+				delegate: bakerAddress(),
 			});
 		} catch (error: any) {
 			console.error(error);
@@ -91,14 +94,14 @@ export default function Delegate() {
 		try {
 			setStatusText("Fetching new counter...");
 
-			const contract = await tezosRpc.getContract(
-				connectedAddress()
-			);
+			const contract = await tezosRpc.getContract(connectedAddress());
 
 			counter = Number(contract.counter) + 1; // increment counter
 		} catch (error) {
 			console.error(error);
-			setError("ERROR: Failed to get new counter for delegation. Please try again later.");
+			setError(
+				"ERROR: Failed to get new counter for delegation. Please try again later.",
+			);
 			setIsSending(false);
 			return;
 		}
@@ -113,7 +116,7 @@ export default function Delegate() {
 				counter,
 				fee: estimate.suggestedFeeMutez,
 				gas_limit: estimate.gasLimit,
-				storage_limit: estimate.storageLimit
+				storage_limit: estimate.storageLimit,
 			};
 
 			counter += 1; // increment counter for delegation operation
@@ -125,7 +128,7 @@ export default function Delegate() {
 			counter,
 			fee: estimate.suggestedFeeMutez,
 			gas_limit: estimate.gasLimit,
-			storage_limit: estimate.storageLimit
+			storage_limit: estimate.storageLimit,
 		};
 
 		operation.delegation = delegationOptions;
@@ -135,7 +138,7 @@ export default function Delegate() {
 		const result = await TrezorConnect.tezosSignTransaction({
 			path: connectedAccountPath(),
 			branch: headBlockHash,
-			operation
+			operation,
 		});
 
 		if (!result.success) {
@@ -149,7 +152,7 @@ export default function Delegate() {
 
 			// inject transaction to the blockchain
 			const delegationOperationId: string = await tezosRpc.injectOperation(
-				result.payload.sig_op_contents
+				result.payload.sig_op_contents,
 			);
 
 			setDelegationTransactionId(delegationOperationId);
@@ -161,7 +164,7 @@ export default function Delegate() {
 			confetti({
 				particleCount: 150,
 				spread: 100,
-				origin: { y: 0.7 }
+				origin: { y: 0.7 },
 			});
 		} catch (error: any) {
 			console.error(error);
@@ -178,96 +181,87 @@ export default function Delegate() {
 		}
 	};
 
-	return <div>
-		<Show when={isSending()}>
-			<div class="notification has-text-centered">
-				{statusText()}
-			</div>
-		</Show>
-		<Show when={connectedAddress()}>
-			<form>
-				<div class="field is-horizontal">
-					<div class="field-label">
-						<label class="label" for="destinationAddress">
-							{t("to")}
-						</label>
-					</div>
-					<div class="field-body">
-						<div class="field">
-							<div class="control">
-								<input
-									id="destinationAddress"
-									value={bakerAddress()}
-									onChange={(e) => setBakerAddress(e.target.value)}
-									class="input"
-									type="text"
-									placeholder={t("baker_address")}
-									disabled={isSending()}
-									required
-								/>
-							</div>
-						</div>
-					</div>
-				</div>
-				<Show when={error()}>
+	return (
+		<div>
+			<Show when={isSending()}>
+				<div class="notification has-text-centered">{statusText()}</div>
+			</Show>
+			<Show when={connectedAddress()}>
+				<form>
 					<div class="field is-horizontal">
 						<div class="field-label">
-							{/* left empty for spacing */}
+							<label class="label" for="destinationAddress">
+								{t("to")}
+							</label>
 						</div>
 						<div class="field-body">
-							<div class="notification is-danger">
-								{error()}
+							<div class="field">
+								<div class="control">
+									<input
+										id="destinationAddress"
+										value={bakerAddress()}
+										onChange={(e) => setBakerAddress(e.target.value)}
+										class="input"
+										type="text"
+										placeholder={t("baker_address")}
+										disabled={isSending()}
+										required
+									/>
+								</div>
 							</div>
 						</div>
 					</div>
-				</Show>
-				<div class="field is-horizontal">
-					<div class="field-label">
-						{/* left empty for spacing */}
-					</div>
-					<div class="field-body">
-						<div class="control">
-							<button
-								type="button"
-								classList={{
-									"button": true,
-									"is-primary": true,
-									"is-medium": true,
-									"is-loading": isSending()
-								}}
-								disabled={isSending()}
-								onclick={delegateTezos}
-							>
-								{startCase(t("delegate"))}
-							</button>
+					<Show when={error()}>
+						<div class="field is-horizontal">
+							<div class="field-label">{/* left empty for spacing */}</div>
+							<div class="field-body">
+								<div class="notification is-danger">{error()}</div>
+							</div>
+						</div>
+					</Show>
+					<div class="field is-horizontal">
+						<div class="field-label">{/* left empty for spacing */}</div>
+						<div class="field-body">
+							<div class="control">
+								<button
+									type="button"
+									classList={{
+										button: true,
+										"is-primary": true,
+										"is-medium": true,
+										"is-loading": isSending(),
+									}}
+									disabled={isSending()}
+									onclick={delegateTezos}
+								>
+									{startCase(t("delegate"))}
+								</button>
+							</div>
 						</div>
 					</div>
+				</form>
+			</Show>
+			<Show when={delegationTransactionId()}>
+				<div class="notification is-success">
+					Delegation Transaction ID:
+					<a
+						class="ml-1"
+						rel="noopener"
+						target="_blank"
+						href={`https://tzstats.com/${delegationTransactionId()}`}
+					>
+						{delegationTransactionId()}
+					</a>
 				</div>
-			</form>
-		</Show>
-		<Show when={delegationTransactionId()}>
-			<div class="notification is-success">
-				Delegation Transaction ID:
-				<a
-					rel="noopener"
-					target="_blank"
-					href={`https://tzstats.com/${delegationTransactionId()}`}
-				>
-					{delegationTransactionId()}
-				</a>
-			</div>
-		</Show>
-		<details>
-			<summary>{t("why_delegate")}</summary>
-			<p>
-				{t("why_delegate_answer")}
-			</p>
-		</details>
-		<details>
-			<summary>{t("will_my_coins_be_locked_up")}</summary>
-			<p>
-				{t("will_my_coins_be_locked_up_answer")}
-			</p>
-		</details>
-	</div>;
+			</Show>
+			<details>
+				<summary>{t("why_delegate")}</summary>
+				<p>{t("why_delegate_answer")}</p>
+			</details>
+			<details>
+				<summary>{t("will_my_coins_be_locked_up")}</summary>
+				<p>{t("will_my_coins_be_locked_up_answer")}</p>
+			</details>
+		</div>
+	);
 }

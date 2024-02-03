@@ -1,5 +1,5 @@
 import { createSignal, onMount, Show } from "solid-js";
-import startCase from "lodash/startCase";
+import { startCase} from "../assets/js/util.ts";
 import { useStore } from "@nanostores/solid";
 import { $trezorConnected } from "../stores/trezor.ts";
 import { t } from "../assets/js/i18n.ts";

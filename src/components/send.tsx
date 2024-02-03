@@ -3,16 +3,15 @@ import TrezorConnect, { type TezosOperation } from "@trezor/connect-web";
 import { RpcClient } from "@taquito/rpc";
 import { TezosToolkit } from "@taquito/taquito";
 import confetti from "canvas-confetti";
-import { ReadOnlySigner } from "../assets/js/util.ts";
+import { ReadOnlySigner, startCase } from "../assets/js/util.ts";
 import { useStore } from "@nanostores/solid";
 import {
 	$connectedAccountIsRevealed,
 	$connectedAccountPath,
 	$connectedAddress,
-	$connectedAddressBalance
+	$connectedAddressBalance,
 } from "../stores/connectedAccount.ts";
 import { t } from "../assets/js/i18n.ts";
-import startCase from "lodash/startCase";
 
 const MINIMUM_BALANCE = 0.275;
 const XTZ_SCALAR: number = 1000000;
@@ -29,7 +28,8 @@ export default function Send() {
 	const [destinationAddress, setDestinationAddress] = createSignal<string>("");
 	const [amount, setAmount] = createSignal<number>(0);
 	const [error, setError] = createSignal<string>("");
-	const [latestTransactionId, setLatestTransactionId] = createSignal<string>("");
+	const [latestTransactionId, setLatestTransactionId] =
+		createSignal<string>("");
 
 	const sendTezos = async () => {
 		if (destinationAddress() === "") {
@@ -46,11 +46,11 @@ export default function Send() {
 		setError("");
 
 		const tezosRpc = new RpcClient(
-			import.meta.env.PUBLIC_TAQUITO_RPC_URL || ""
+			import.meta.env.PUBLIC_TAQUITO_RPC_URL || "",
 		);
 
 		const tezos = new TezosToolkit(
-			import.meta.env.PUBLIC_TAQUITO_RPC_URL || ""
+			import.meta.env.PUBLIC_TAQUITO_RPC_URL || "",
 		);
 
 		let publicKeyResult = null;
@@ -61,7 +61,7 @@ export default function Send() {
 
 			publicKeyResult = await TrezorConnect.tezosGetPublicKey({
 				path: connectedAccountPath(),
-				showOnTrezor: false
+				showOnTrezor: false,
 			});
 
 			if (!publicKeyResult.success) {
@@ -74,8 +74,8 @@ export default function Send() {
 		tezos.setProvider({
 			signer: new ReadOnlySigner(
 				connectedAddress(),
-				publicKeyResult === null ? "" : publicKeyResult.payload.publicKey
-			)
+				publicKeyResult === null ? "" : publicKeyResult.payload.publicKey,
+			),
 		});
 
 		setStatusText("Retrieving head block...");
@@ -92,7 +92,7 @@ export default function Send() {
 
 			estimate = await tezos.estimate.transfer({
 				to: destinationAddress(),
-				amount: amount()
+				amount: amount(),
 			});
 		} catch (error: any) {
 			console.error(error);
@@ -102,7 +102,9 @@ export default function Send() {
 			} else if (
 				error?.message?.includes("empty_implicit_delegated_contract")
 			) {
-				setError("Cannot drain wallet; it must contain a minimum balance of 0.275ꜩ");
+				setError(
+					"Cannot drain wallet; it must contain a minimum balance of 0.275ꜩ",
+				);
 			} else {
 				setError(error.message);
 			}
@@ -121,9 +123,7 @@ export default function Send() {
 
 		try {
 			setStatusText("Fetching new counter...");
-			const contract = await tezosRpc.getContract(
-				connectedAddress()
-			);
+			const contract = await tezosRpc.getContract(connectedAddress());
 
 			/**
 			 * Each transaction needs a counter that's given by a node.
@@ -139,7 +139,7 @@ export default function Send() {
 		} catch (error) {
 			console.error(error);
 			alert(
-				"ERROR: Failed to get new counter for send transaction. Please try again later."
+				"ERROR: Failed to get new counter for send transaction. Please try again later.",
 			);
 			return;
 		}
@@ -160,7 +160,7 @@ export default function Send() {
 				counter,
 				fee: estimate.suggestedFeeMutez,
 				gas_limit: estimate.gasLimit,
-				storage_limit: estimate.storageLimit
+				storage_limit: estimate.storageLimit,
 			};
 
 			counter += 1; // increment counter for delegation operation
@@ -173,7 +173,7 @@ export default function Send() {
 			counter,
 			fee: estimate.suggestedFeeMutez,
 			gas_limit: estimate.gasLimit,
-			storage_limit: estimate.storageLimit
+			storage_limit: estimate.storageLimit,
 		};
 
 		setStatusText("Prompting to sign transaction...");
@@ -181,7 +181,7 @@ export default function Send() {
 		const result = await TrezorConnect.tezosSignTransaction({
 			path: connectedAccountPath(),
 			branch: headBlockHash,
-			operation
+			operation,
 		});
 
 		if (!result.success) {
@@ -195,7 +195,7 @@ export default function Send() {
 
 			// inject transaction to the blockchain
 			const transactionId: string = await tezosRpc.injectOperation(
-				result.payload.sig_op_contents
+				result.payload.sig_op_contents,
 			);
 
 			setLatestTransactionId(transactionId);
@@ -207,7 +207,7 @@ export default function Send() {
 			confetti({
 				particleCount: 150,
 				spread: 100,
-				origin: { y: 0.7 }
+				origin: { y: 0.7 },
 			});
 		} catch (error: any) {
 			console.error(error);
@@ -227,9 +227,8 @@ export default function Send() {
 	const setQuickAmount = (percentage: number) => {
 		const quickAmount: number = Number(
 			Number(
-				(connectedAddressBalance() - MINIMUM_BALANCE) *
-				percentage
-			).toFixed(6)
+				(connectedAddressBalance() - MINIMUM_BALANCE) * percentage,
+			).toFixed(6),
 		);
 
 		if (quickAmount > 0) {
@@ -242,9 +241,7 @@ export default function Send() {
 	return (
 		<div>
 			<Show when={isSending()}>
-				<div class="notification has-text-centered">
-					{statusText()}
-				</div>
+				<div class="notification has-text-centered">{statusText()}</div>
 			</Show>
 			{connectedAddress() && (
 				<form>
@@ -338,6 +335,9 @@ export default function Send() {
 					</div>
 					<Show when={error()}>
 						<div class="field is-horizontal">
+							<div class="field-label">
+								<label class="label">{/*	intentionally left blank */}</label>
+							</div>
 							<div class="field-body">
 								<div class="notification is-danger">{error()}</div>
 							</div>
@@ -345,9 +345,7 @@ export default function Send() {
 					</Show>
 					<div class="field is-horizontal">
 						<div class="field-label">
-							<label class="label">
-								{/*	intentionally left blank */}
-							</label>
+							<label class="label">{/*	intentionally left blank */}</label>
 						</div>
 						<div class="field-body">
 							<div class="control">
@@ -368,6 +366,7 @@ export default function Send() {
 				<div class="notification is-success">
 					Latest Transaction ID:
 					<a
+						class="ml-1"
 						rel="noopener"
 						target="_blank"
 						href={`https://tzstats.com/${latestTransactionId()}`}
@@ -378,9 +377,7 @@ export default function Send() {
 			</Show>
 			<details>
 				<summary>{t("why_cant_i_send_all_tezos")}</summary>
-				<p>
-					{t("why_cant_i_send_all_tezos_answer")}
-				</p>
+				<p>{t("why_cant_i_send_all_tezos_answer")}</p>
 			</details>
 		</div>
 	);
