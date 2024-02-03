@@ -11,6 +11,7 @@
 	"font_awesome_attribution": "Icons from Font Awesome",
 	"logo_attribution": "Logo by Sameer Rizvi",
 	"donations": "donations",
+	"donation_pitch": "Please donate to fund Briskett development",
 	"help_translate": "Help me translate",
 	"online": "online",
 	"offline": "offline",
@@ -48,10 +49,13 @@
 	"why_verify_my_address": "Why verify my address?",
 	"why_verify_my_address_answer": "Although the chances are slim, in the event an attacker gains access to\n\t\t\t\tthis page (like via a malicious browser extension) they could swap out\n\t\t\t\tyour address for their own. This would lead to them getting the coins\n\t\t\t\tthat are about to be sent out and NOT YOU! Please practice good security\n\t\t\t\tby verifying your address, especially when sending very large amounts.",
 	"reveal_operation_details": "This operation reveals your public key to the network. It needs to be done once per address, and is a requirement for verifying operation signatures on the network.",
+	"language": "Language",
 	"tzpro_api_key": "TzStats/TzPro API Key",
 	"tzpro_api_key_click_to_add_own_key": "Click here to add your own key",
 	"tzpro_api_key_help": "Instructions are available at",
 	"save_and_refresh": "Save & Refresh",
 	"refresh_page_after_changing": "Refreshes the page after changing settings to apply changes.",
-	"something_went_wrong": "Something went wrong. Please try again later."
+	"something_went_wrong": "Something went wrong. Please try again later.",
+	"buy_me_a_coffee": "Buy me a coffee",
+	"attributions": "attributions"
 }

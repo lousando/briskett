@@ -198,17 +198,32 @@ export default function Send() {
 				result.payload.sig_op_contents,
 			);
 
+			// celebrate
+			confetti({
+				particleCount: 200,
+				spread: 100,
+				origin: { y: 0.5 },
+			});
+
+			if (
+				destinationAddress() === import.meta.env.PUBLIC_DONATION_XTZ_ADDRESS
+			) {
+				const thanks = confetti.shapeFromText({ text: "Thank You!" });
+
+				confetti({
+					spread: 200,
+					particleCount: 10,
+					shapes: [thanks],
+					scalar: 5,
+					// @ts-ignore
+					flat: true,
+				});
+			}
+
 			setLatestTransactionId(transactionId);
 			// clear form
 			setDestinationAddress("");
 			setAmount(0);
-
-			// celebrate
-			confetti({
-				particleCount: 150,
-				spread: 100,
-				origin: { y: 0.7 },
-			});
 		} catch (error: any) {
 			console.error(error);
 
@@ -362,6 +377,20 @@ export default function Send() {
 					</div>
 				</form>
 			)}
+			{/* prevent accidental donation while in the middle of another transaction */}
+			<Show when={!isSending() && import.meta.env.PUBLIC_DONATION_XTZ_ADDRESS}>
+				<div class="mt-3 mb-5">
+					❤️&nbsp;{t("donation_pitch")}&nbsp;❤️
+					<br/>
+					<a
+						onClick={() =>
+							setDestinationAddress(import.meta.env.PUBLIC_DONATION_XTZ_ADDRESS)
+						}
+					>
+						{import.meta.env.PUBLIC_DONATION_XTZ_ADDRESS}
+					</a>
+				</div>
+			</Show>
 			<Show when={latestTransactionId()}>
 				<div class="notification is-success">
 					Latest Transaction ID:

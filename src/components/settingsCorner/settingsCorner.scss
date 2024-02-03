@@ -1,21 +1,12 @@
 .settings-corner {
-	position: absolute;
-	top: 5px;
-	right: 10px;
+	position: fixed;
+	top: 0.5rem;
+	right: 1rem;
 	z-index: 10;
 	display: flex;
 	flex-direction: column;
 	align-items: end;
 	row-gap: 0.5rem;
-
-	.help-translate {
-		background-color: var(--background-color);
-	}
-
-	.language-switcher {
-		background-color: white;
-		max-width: fit-content;
-	}
 
 	.additional-settings-button {
 		cursor: pointer;
