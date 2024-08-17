@@ -5,7 +5,7 @@
 	"slogan": "The delicious Trezor wallet.",
 	"connect_trezor": "Connect Trezor",
 	"connect_trezor_footnote": "Might need to disable ad blocker in order for Trezor Connect to work.\nBrave users, take down Brave Shields.",
-	"rpc_node_status": "Tezos Foundation Node Status",
+	"rpc_node_status": "Briskett Node Status",
 	"tzstats_api_status": "TzStats API Status",
 	"version": "version",
 	"font_awesome_attribution": "Icons from Font Awesome",
