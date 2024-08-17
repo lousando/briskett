@@ -28,7 +28,7 @@
   "reveal": "revelar",
   "reveal_operation_details": "Esta operação revela sua chave pública para a rede. Ele precisa ser feito uma vez por endereço e é um requisito para verificar assinaturas de operação na rede.",
   "reward": "recompensa",
-  "rpc_node_status": "Status do nó ECAD Labs",
+  "rpc_node_status": "Status do nó Tezos Foundation",
   "send": "enviar",
   "slogan": "A deliciosa carteira para Trezor.",
   "status": "estado",
