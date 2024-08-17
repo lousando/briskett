@@ -28,7 +28,7 @@
   "reveal": "reveal",
   "reveal_operation_details": "This operation reveals your public key to the network. It needs to be done once per address, and is a requirement for verifying operation signatures on the network.",
   "reward": "reward",
-  "rpc_node_status": "ECAD Labs Node Status",
+  "rpc_node_status": "Tezos Foundation Node Status",
   "send": "send",
   "slogan": "De heerlijke Trezor portemonnee.",
   "status": "status",
