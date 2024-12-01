@@ -68,7 +68,7 @@ export default function Header() {
 				<Show when={connectedAddressBaker()}>
 					<h4 class="is-size-4">
 						{startCase(t("baker"))}:&nbsp;
-						<a rel="noopener" target="_blank" href={`https://tzstats.com/${connectedAddressBaker()}`}>
+						<a rel="noopener" target="_blank" href={`https://tzkt.io/${connectedAddressBaker()}`}>
 							{connectedAddressBaker()}
 						</a>
 					</h4>

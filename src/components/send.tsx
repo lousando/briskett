@@ -398,7 +398,7 @@ export default function Send() {
 						class="ml-1"
 						rel="noopener"
 						target="_blank"
-						href={`https://tzstats.com/${latestTransactionId()}`}
+						href={`https://tzkt.io/${latestTransactionId()}`}
 					>
 						{latestTransactionId()}
 					</a>

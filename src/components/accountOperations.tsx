@@ -87,7 +87,7 @@ export default function AccountOperations() {
 										<a
 											rel="noopener"
 											target="_blank"
-											href={`https://tzstats.com/${operation.receiver}`}
+											href={`https://tzkt.io/${operation.receiver}`}
 										>
 											{operation.receiver.slice(0, 5)}...
 											{operation.receiver.slice(-5)}
@@ -98,7 +98,7 @@ export default function AccountOperations() {
 										<a
 											rel="noopener"
 											target="_blank"
-											href={`https://tzstats.com/${operation.sender}`}
+											href={`https://tzkt.io/${operation.sender}`}
 										>
 											{operation.sender.slice(0, 5)}...
 											{operation.sender.slice(-5)}
@@ -109,7 +109,7 @@ export default function AccountOperations() {
 								<a
 									rel="noopener"
 									target="_blank"
-									href={`https://tzstats.com/${operation.hash}`}
+									href={`https://tzkt.io/${operation.hash}`}
 								>
 									{operation.hash.slice(0, 5)}...{operation.hash.slice(-5)}
 								</a>

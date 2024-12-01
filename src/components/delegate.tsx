@@ -248,7 +248,7 @@ export default function Delegate() {
 						class="ml-1"
 						rel="noopener"
 						target="_blank"
-						href={`https://tzstats.com/${delegationTransactionId()}`}
+						href={`https://tzkt.io/${delegationTransactionId()}`}
 					>
 						{delegationTransactionId()}
 					</a>
