@@ -8,6 +8,8 @@ import {
 import { For, Show } from "solid-js";
 import { startCase } from "../assets/js/util.ts";
 
+const XTZ_SCALAR: number = 1000000;
+
 export default function AccountOperations() {
 	// global state
 	const connectedAddress = useStore($connectedAddress);
@@ -43,15 +45,15 @@ export default function AccountOperations() {
 								)}
 								{/* Type */}
 								{operation.type === "transaction" &&
-									operation.sender === connectedAddressBaker() && (
+									operation.sender.address === connectedAddressBaker() && (
 										<span class="reward">{startCase(t("reward"))}</span>
 									)}
 								{operation.type === "transaction" &&
-									operation.sender !== connectedAddress() && (
+									operation.sender.address !== connectedAddress() && (
 										<span class="receive">{startCase(t("receive"))}</span>
 									)}
 								{operation.type === "transaction" &&
-									operation.sender === connectedAddress() && (
+									operation.sender.address === connectedAddress() && (
 										<span class="send">{startCase(t("send"))}</span>
 									)}
 								{operation.type === "delegation" && (
@@ -78,30 +80,31 @@ export default function AccountOperations() {
 									</span>
 								)}
 								{/* Amount */}
-								<div class="amount">{operation.volume ?? 0}</div>
+								{/* convert from mutez to tezos */}
+								<div class="amount">{operation.amount / XTZ_SCALAR ?? 0}</div>
 								{/* Time */}
 								<div>{operation.time}</div>
 								{/* Address */}
 								{operation.type === "transaction" &&
-									operation.sender === connectedAddress() && (
+									operation.sender.address === connectedAddress() && (
 										<a
 											rel="noopener"
 											target="_blank"
-											href={`https://tzkt.io/${operation.receiver}`}
+											href={`https://tzkt.io/${operation.target.address}`}
 										>
-											{operation.receiver.slice(0, 5)}...
-											{operation.receiver.slice(-5)}
+											{operation.target.address.slice(0, 5)}...
+											{operation.target.address.slice(-5)}
 										</a>
 									)}
 								{operation.type === "transaction" &&
-									operation.sender !== connectedAddress() && (
+									operation.sender.address !== connectedAddress() && (
 										<a
 											rel="noopener"
 											target="_blank"
-											href={`https://tzkt.io/${operation.sender}`}
+											href={`https://tzkt.io/${operation.sender.address}`}
 										>
-											{operation.sender.slice(0, 5)}...
-											{operation.sender.slice(-5)}
+											{operation.sender.address.slice(0, 5)}...
+											{operation.sender.address.slice(-5)}
 										</a>
 									)}
 								{operation.type !== "transaction" && <span>&mdash;</span>}

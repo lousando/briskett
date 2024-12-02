@@ -86,9 +86,9 @@ const computedTitle = title ? `${title} | Briskett` : "Briskett";
 				$rpcNodeOnline.set(false);
 			});
 
-		fetch(`${import.meta.env.PUBLIC_TZPRO_URL}/explorer/tip`, {
+		fetch(`${import.meta.env.PUBLIC_TZPRO_URL}/v1/head`, {
 			headers: {
-				"X-API-Key": $tzProKey.get() || import.meta.env.PUBLIC_TZPRO_API_KEY
+				"apikey": $tzProKey.get() || import.meta.env.PUBLIC_TZPRO_API_KEY
 			}
 		})
 			.then((r) => {

@@ -13,10 +13,13 @@ interface Operation {
 	is_success: boolean;
 	gas_limit: number;
 	gas_used: number;
-	volume: number;
-	fee: number;
-	sender: string;
-	receiver: string;
+	amount: number;
+	sender: {
+		address: string;
+	}
+	target: {
+		address: string;
+	};
 	baker: string;
 	confirmations: number;
 }

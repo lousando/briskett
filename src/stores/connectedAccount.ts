@@ -24,13 +24,12 @@ export function loadConnectedAccountData() {
 		$connectedAccountIsRevealed.set(isRevealed);
 	});
 
-	fetch(
-		`${
+	fetch(`${
 			import.meta.env.PUBLIC_TZPRO_URL
-		}/explorer/account/${$connectedAddress.get()}/operations?order=desc`,
+		}/v1/accounts/${$connectedAddress.get()}/operations`,
 		{
 			headers: {
-				"X-API-Key": $tzProKey.get() || import.meta.env.PUBLIC_TZPRO_API_KEY,
+				"apikey": $tzProKey.get() || import.meta.env.PUBLIC_TZPRO_API_KEY,
 			},
 		},
 	)

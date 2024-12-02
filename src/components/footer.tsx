@@ -56,6 +56,9 @@ export default function Footer() {
 							</Match>
 						</Switch>
 					</span>
+					<div>
+						<a href="https://tzkt.io/" target="_blank">{t("tx_log_api_attribution")}</a>
+					</div>
 				</div>
 			</div>
 			<div class="right">
