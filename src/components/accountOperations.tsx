@@ -81,7 +81,7 @@ export default function AccountOperations() {
 								)}
 								{/* Amount */}
 								{/* convert from mutez to tezos */}
-								<div class="amount">{operation.amount / XTZ_SCALAR ?? 0}</div>
+								<div class="amount">{operation.amount / XTZ_SCALAR}</div>
 								{/* Time */}
 								<div>{operation.time}</div>
 								{/* Address */}
