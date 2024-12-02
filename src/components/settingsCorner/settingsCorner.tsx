@@ -141,10 +141,10 @@ export default function SettingsCorner() {
 						<p class="help">
 							{t("tzpro_api_key_help")}&nbsp;
 							<a
-								href="https://github.com/lousando/briskett/wiki/Creating-a-TzPro-API-Key"
+								href="https://github.com/lousando/briskett/wiki/Creating-a-TzKT-API-Key"
 								target="_blank"
 							>
-								https://github.com/lousando/briskett/wiki/Creating-a-TzPro-API-Key
+								https://github.com/lousando/briskett/wiki/Creating-a-TzKT-API-Key
 							</a>
 						</p>
 					</div>
