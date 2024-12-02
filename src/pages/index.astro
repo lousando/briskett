@@ -86,9 +86,16 @@ const computedTitle = title ? `${title} | Briskett` : "Briskett";
 				$rpcNodeOnline.set(false);
 			});
 
-		fetch(`${import.meta.env.PUBLIC_TZPRO_URL}/v1/head`, {
+
+		let txLogEndpoint = import.meta.env.PUBLIC_TZKT_URL;
+
+		if ($tzProKey.get()) {
+			txLogEndpoint = import.meta.env.PUBLIC_TZKTPRO_URL;
+		}
+
+		fetch(`${txLogEndpoint}/v1/head`, {
 			headers: {
-				"apikey": $tzProKey.get() || import.meta.env.PUBLIC_TZPRO_API_KEY
+				"apikey": $tzProKey.get(),
 			}
 		})
 			.then((r) => {

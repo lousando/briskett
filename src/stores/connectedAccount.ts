@@ -24,12 +24,18 @@ export function loadConnectedAccountData() {
 		$connectedAccountIsRevealed.set(isRevealed);
 	});
 
+	let txLogEndpoint = import.meta.env.PUBLIC_TZKT_URL;
+
+	if ($tzProKey.get()) {
+		txLogEndpoint = import.meta.env.PUBLIC_TZKTPRO_URL;
+	}
+
 	fetch(`${
-			import.meta.env.PUBLIC_TZPRO_URL
+			txLogEndpoint
 		}/v1/accounts/${$connectedAddress.get()}/operations`,
 		{
 			headers: {
-				"apikey": $tzProKey.get() || import.meta.env.PUBLIC_TZPRO_API_KEY,
+				"apikey": $tzProKey.get(),
 			},
 		},
 	)
