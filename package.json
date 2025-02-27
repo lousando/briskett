@@ -30,7 +30,7 @@
 		"@taquito/rpc": "^9.2.0",
 		"@taquito/signer": "~9.2.0",
 		"@taquito/taquito": "^9.2.0",
-		"@trezor/connect-web": "^9.1.11",
+		"@trezor/connect-web": "^9.5.0",
 		"@types/canvas-confetti": "^1.6.4",
 		"@types/chance": "^1.1.6",
 		"@types/jest": "^29.5.12",
