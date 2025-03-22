@@ -10,7 +10,7 @@
 	"packageManager": "pnpm@10.6.5",
 	"engines": {
 		"node": ">=20.x",
-		"pnpm": ">=8.15.1"
+		"pnpm": ">=9.x"
 	},
 	"scripts": {
 		"watch": "astro dev",
