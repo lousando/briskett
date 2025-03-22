@@ -1,7 +1,7 @@
 {
 	"name": "briskett",
 	"description": "A delicious Tezos wallet interface for Trezor.",
-	"version": "0.23.1",
+	"version": "0.23.2",
 	"private": true,
 	"license": "MIT",
 	"volta": {
