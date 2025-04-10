@@ -4,8 +4,8 @@ A delicious Tezos wallet interface for Trezor.
 
 ## Dependencies 🧱
 
-- Node >= 20.x
-- PNPM >= 8.x
+- Node >= 22.x
+- PNPM >= 10.x
 - The [Astro](https://astro.build/) Web Framework
 - The [SolidJs](https://www.solidjs.com/) Component Framework
 
