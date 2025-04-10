@@ -4,13 +4,9 @@
 	"version": "0.23.2",
 	"private": true,
 	"license": "MIT",
-	"volta": {
-		"node": "20.11.0"
-	},
 	"packageManager": "pnpm@10.6.5",
 	"engines": {
-		"node": ">=20.x",
-		"pnpm": ">=9.x"
+		"node": ">=20.x"
 	},
 	"scripts": {
 		"watch": "astro dev",
