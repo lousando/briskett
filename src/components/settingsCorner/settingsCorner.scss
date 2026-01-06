@@ -1,0 +1,32 @@
+.settings-corner {
+	position: fixed;
+	top: 0.5rem;
+	right: 1rem;
+	z-index: 10;
+	display: flex;
+	flex-direction: column;
+	align-items: end;
+	row-gap: 0.5rem;
+
+	.additional-settings-button {
+		cursor: pointer;
+
+		svg path {
+			fill: var(--link-color)
+		}
+	}
+}
+
+.settings-modal {
+	position: fixed;
+	top: 25%;
+	left: 0;
+	width: 30vw;
+	z-index: 500;
+
+	.close-button {
+		cursor: pointer;
+		border: none;
+		background-color: transparent;
+	}
+}

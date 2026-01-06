@@ -1,0 +1,129 @@
+---
+import "bulma/css/bulma.min.css";
+import "../assets/styles/main.scss";
+
+import SettingsCorner from "../components/settingsCorner/settingsCorner.tsx";
+import Header from "../components/header.tsx";
+import Router from "../components/router.tsx";
+import AccountOperations from "../components/accountOperations.jsx";
+import Footer from "../components/footer.jsx";
+
+interface Props {
+	title?: string;
+}
+
+const { title } = Astro.props;
+const computedTitle = title ? `${title} | Briskett` : "Briskett";
+---
+
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<link rel="icon" type="image/png" href="/images/logo_mini.png" />
+	<title>{computedTitle}</title>
+	<meta name="description" content="A delicious Tezos wallet interface for Trezor." />
+	<meta name="generator" content={Astro.generator} />
+	<!-- Open Graph -->
+	<meta name="og:type" property="og:type" content="website">
+	<meta name="og:title" property="og:title" content="Briskett">
+	<meta name="og:site_name" property="og:site_name" content="Briskett">
+	<meta name="og:description" property="og:description"
+				content="A delicious Tezos wallet interface for Trezor.">
+	<meta name="og:image" content="/images/logo_mini.png" />
+</head>
+<body>
+<noscript>
+	<div class="notification is-danger has-text-centered">
+		Please enable Javascript to use this site. Sorry Mitch.
+	</div>
+</noscript>
+<main>
+	<SettingsCorner client:idle />
+	<Header client:idle />
+	<section>
+		<Router client:load />
+	</section>
+	<AccountOperations client:idle />
+	<Footer client:idle />
+</main>
+
+<script>
+	import TrezorConnect, { DEVICE, DEVICE_EVENT } from "@trezor/connect-web";
+	import { $trezorConnected } from "../stores/trezor.ts";
+	import { $rpcNodeOnline, $tzProApiOnline, $tzProKey } from "../stores/externalServices.ts";
+	import { loadConnectedAccountData, $connectedAddress } from "../stores/connectedAccount";
+
+	TrezorConnect.init({
+		lazyLoad: true, // inject once first TrezorConnect method is called
+		manifest: {
+			email: import.meta.env.PUBLIC_TREZOR_MANIFEST_EMAIL || "",
+			appUrl: import.meta.env.PUBLIC_TREZOR_MANIFEST_APP_URL || ""
+		}
+	});
+
+	TrezorConnect.on(DEVICE_EVENT, (event) => {
+		if (event.type === DEVICE.CONNECT) {
+			$trezorConnected.set(true);
+		} else if (event.type === DEVICE.DISCONNECT) {
+			$trezorConnected.set(false);
+		}
+	});
+
+	const checkNodeStatuses = () => {
+		fetch(
+			`${import.meta.env.PUBLIC_TAQUITO_RPC_URL}/chains/main/blocks/head/hash`
+		)
+			.then((r) => {
+				if (r.ok) {
+					$rpcNodeOnline.set(true);
+				} else {
+					$rpcNodeOnline.set(false);
+				}
+			})
+			.catch(() => {
+				$rpcNodeOnline.set(false);
+			});
+
+
+		let txLogEndpoint = import.meta.env.PUBLIC_TZKT_URL;
+
+		if ($tzProKey.get()) {
+			txLogEndpoint = import.meta.env.PUBLIC_TZKTPRO_URL;
+		}
+
+		fetch(`${txLogEndpoint}/v1/head`, {
+			headers: {
+				"apikey": $tzProKey.get(),
+			}
+		})
+			.then((r) => {
+				if (r.ok) {
+					$tzProApiOnline.set(true);
+				} else {
+					$tzProApiOnline.set(false);
+				}
+			})
+			.catch(() => {
+				$tzProApiOnline.set(false);
+			});
+	};
+
+	checkNodeStatuses();
+
+	setInterval(checkNodeStatuses, 1000 * 60 /* check once every minute */);
+
+	// initial load in case we're in dev mode
+	if ($connectedAddress.get()) {
+		loadConnectedAccountData();
+	}
+
+	setInterval(() => {
+		if ($connectedAddress.get()) {
+			loadConnectedAccountData();
+		}
+	}, 1000 * 60 /* check once every minute */);
+</script>
+</body>
+</html>

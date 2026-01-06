@@ -1,0 +1,10 @@
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - '@taquito/taquito'
+  - blake-hash
+  - core-js
+  - esbuild
+  - protobufjs
+  - sharp
+  - tiny-secp256k1
+  - usb
